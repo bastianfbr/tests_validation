@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MorpionApp", "MorpionApp.csproj", "{A0418F92-68EA-4091-BC49-D5F9652BBFA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MorpionAppTests", "..\MorpionAppTests\MorpionAppTests.csproj", "{A20E811E-B3F7-49A1-8B96-1BEF847C33E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A0418F92-68EA-4091-BC49-D5F9652BBFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0418F92-68EA-4091-BC49-D5F9652BBFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0418F92-68EA-4091-BC49-D5F9652BBFA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A20E811E-B3F7-49A1-8B96-1BEF847C33E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20E811E-B3F7-49A1-8B96-1BEF847C33E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A20E811E-B3F7-49A1-8B96-1BEF847C33E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20E811E-B3F7-49A1-8B96-1BEF847C33E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
