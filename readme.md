@@ -64,10 +64,10 @@ Refactoriser la logique de gestion de l'état du jeu, en remplaçant l'usage de 
 ### ⚙️ Introduire des Tests unitaires 
 Développer des tests unitaires pour chaque composant critique du logiciel, permettant de détecter et de corriger les bugs plus rapidement et de manière fiable.
 
-### 🔗 Réduire le couplage : 
+### 🔗 Réduire le couplage
 Réorganiser le code pour minimiser les dépendances directes entre les composants, en utilisant des interfaces ou des événements pour communiquer entre eux, ce qui rendra le code plus modulaire et facilitera l'ajout de nouvelles fonctionnalités.
 
-### 🧹 Nettoyer le Code : 
+### 🧹 Nettoyer le Code
 Supprimer le code mort ou commenté qui n'apporte pas de valeur ajoutée au projet pour améliorer la lisibilité et la maintenabilité du code.
 
 # III. 🌟 Développement des fonctionnalités manquantes
