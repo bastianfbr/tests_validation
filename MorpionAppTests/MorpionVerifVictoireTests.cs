@@ -2,11 +2,11 @@ using MorpionApp;
 
 namespace MorpionAppTests
 {
-    public class VerifVictoireTests : IDisposable
+    public class MorpionVerifVictoireTests : IDisposable
     {
         private Morpion jeu;
 
-        public VerifVictoireTests()
+        public MorpionVerifVictoireTests()
         {
             jeu = new Morpion();
         }
