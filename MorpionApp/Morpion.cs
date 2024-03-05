@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MorpionApp.Interfaces;
 
 namespace MorpionApp
 {
-    public class Morpion
+    public class Morpion : IJeu
     {
         public bool quiterJeu = false;
         public bool tourDuJoueur = true;
