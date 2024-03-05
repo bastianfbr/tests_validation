@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using MorpionApp.Interfaces;
 
 namespace MorpionApp
 {
@@ -27,17 +28,9 @@ namespace MorpionApp
 
         private static void LancerJeu(ConsoleKey choix)
         {
-            switch (choix)
-            {
-                case ConsoleKey.X:
-                    Morpion morpion = new Morpion();
-                    morpion.BoucleJeu();
-                    break;
-                case ConsoleKey.P:
-                    PuissanceQuatre puissanceQuatre = new PuissanceQuatre();
-                    puissanceQuatre.BoucleJeu();
-                    break;
-            }
+            IJeuFabrique jeuFabrique = new JeuFabrique();
+            IJeu jeu = jeuFabrique.CreerJeu(choix);
+            jeu.BoucleJeu();
         }
     }
 }
