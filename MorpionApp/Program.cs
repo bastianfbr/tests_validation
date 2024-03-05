@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using MorpionApp.Interfaces;
 
 namespace MorpionApp
@@ -18,12 +18,16 @@ namespace MorpionApp
         private static ConsoleKey ChoisirJeu()
         {
             ConsoleKey key;
-            do
+            var input = Console.ReadKey(true).Key;
+            switch (input)
             {
-                key = Console.ReadKey(true).Key;
-            } while (key != ConsoleKey.X && key != ConsoleKey.P);
-
-            return key;
+                case ConsoleKey.X:
+                case ConsoleKey.P:
+                    return input;
+                default:
+                    Console.WriteLine("Entrée invalide. Veuillez taper [X] pour le morpion ou [P] pour le puissance 4.");
+                    return ChoisirJeu();
+            }
         }
 
         private static void LancerJeu(ConsoleKey choix)
