@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MorpionApp.Interfaces;
+﻿using MorpionApp.Interfaces;
 
 namespace MorpionApp
 {
@@ -122,28 +117,7 @@ namespace MorpionApp
                     }
 
                     break;
-
-                //case ConsoleKey.UpArrow:
-                //    if (row <= 0)
-                //    {
-                //        row = 3;
-                //    }
-                //    else
-                //    {
-                //        row = row - 1;
-                //    }
-                //    break;
-
-                //case ConsoleKey.DownArrow:
-                //    if (row >= 3)
-                //    {
-                //        row = 0;
-                //    }
-                //    else
-                //    {
-                //        row = row + 1;
-                //    }
-                //    break;
+                
                 case ConsoleKey.Enter:
                     while (row <= 3)
                     {
@@ -220,28 +194,7 @@ namespace MorpionApp
                     }
 
                     break;
-
-                //case ConsoleKey.UpArrow:
-                //    if (row <= 0)
-                //    {
-                //        row = 3;
-                //    }
-                //    else
-                //    {
-                //        row = row - 1;
-                //    }
-                //    break;
-
-                //case ConsoleKey.DownArrow:
-                //    if (row >= 3)
-                //    {
-                //        row = 0;
-                //    }
-                //    else
-                //    {
-                //        row = row + 1;
-                //    }
-                //    break;
+                
                 case ConsoleKey.Enter:
                     while (row <= 3)
                     {
