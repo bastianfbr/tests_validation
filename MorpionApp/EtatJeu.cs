@@ -20,11 +20,36 @@ public class EtatJeu
             }
         }
     }
-    
+
     public void AfficherGrille()
     {
-        // Pas encore implémenté
+        for (int i = 0; i < Grille.GetLength(0); i++)
+        {
+            for (int j = 0; j < Grille.GetLength(1); j++)
+            {
+                Console.Write(" ");
+                Console.Write(Grille[i, j]);
+                Console.Write(" ");
+                if (j < Grille.GetLength(1) - 1)
+                {
+                    Console.Write(" | ");
+                }
+            }
+
+            Console.WriteLine();
+
+            string separator = "----";
+            for (int col = 2; col < Grille.GetLength(1); col++)
+            {
+                separator += "+-----";
+            }
+            separator += (Grille.GetLength(1) == 7) ? "+----" : "+----";
+
+            if (i < Grille.GetLength(0) - 1)
+            {
+                Console.WriteLine(separator);
+            }
+
+        }
     }
-
-
 }
