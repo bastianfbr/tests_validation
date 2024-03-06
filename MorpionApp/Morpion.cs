@@ -73,10 +73,10 @@ namespace MorpionApp
             while (!quiterJeu && !moved)
             {
                 Console.Clear();
-                affichePlateau();
+                etatJeu.AfficherGrille();
                 Console.WriteLine();
                 Console.WriteLine("Choisir une case valide est appuyer sur [Entrer]");
-                Console.SetCursorPosition(column * 6 + 1, row * 4 + 1);
+                Console.SetCursorPosition(column * 6 + 1, row * 2);
 
                 switch (Console.ReadKey(true).Key)
                 {
@@ -149,10 +149,10 @@ namespace MorpionApp
             while (!quiterJeu && !moved)
             {
                 Console.Clear();
-                affichePlateau();
+                etatJeu.AfficherGrille();
                 Console.WriteLine();
                 Console.WriteLine("Choisir une case valide est appuyer sur [Entrer]");
-                Console.SetCursorPosition(column * 6 + 1, row * 4 + 1);
+                Console.SetCursorPosition(column * 6 + 1, row * 2);
 
                 switch (Console.ReadKey(true).Key)
                 {
@@ -214,20 +214,6 @@ namespace MorpionApp
                         break;
                 }
             }
-        }
-
-        public void affichePlateau()
-        {
-            Console.WriteLine();
-            Console.WriteLine($" {etatJeu.Grille[0, 0]}  |  {etatJeu.Grille[0, 1]}  |  {etatJeu.Grille[0, 2]}");
-            Console.WriteLine("    |     |");
-            Console.WriteLine("----+-----+----");
-            Console.WriteLine("    |     |");
-            Console.WriteLine($" {etatJeu.Grille[1, 0]}  |  {etatJeu.Grille[1, 1]}  |  {etatJeu.Grille[1, 2]}");
-            Console.WriteLine("    |     |");
-            Console.WriteLine("----+-----+----");
-            Console.WriteLine("    |     |");
-            Console.WriteLine($" {etatJeu.Grille[2, 0]}  |  {etatJeu.Grille[1, 1]}  |  {etatJeu.Grille[0, 2]}");
         }
 
         public bool verifVictoire(char c) =>
