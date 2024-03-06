@@ -4,25 +4,20 @@ namespace MorpionApp
 {
     public class Morpion : IJeu
     {
+        private EtatJeu etatJeu;
         public bool quiterJeu = false;
         public bool tourDuJoueur = true;
-        public char[,] grille;
 
         public Morpion()
         {
-            grille = new char[3, 3];
+            etatJeu = new EtatJeu(3, 3);
         }
 
         public void BoucleJeu()
         {
             while (!quiterJeu)
             {
-                grille = new char[3, 3]
-                {
-                    { ' ', ' ', ' '},
-                    { ' ', ' ', ' '},
-                    { ' ', ' ', ' '},
-                };
+                etatJeu.InitialiserGrille();
                 while (!quiterJeu)
                 {
                     if (tourDuJoueur)
@@ -134,9 +129,9 @@ namespace MorpionApp
                         }
                         break;
                     case ConsoleKey.Enter:
-                        if (grille[row, column] is ' ')
+                        if (etatJeu.Grille[row, column] is ' ')
                         {
-                            grille[row, column] = 'X';
+                            etatJeu.Grille[row, column] = 'X';
                             moved = true;
                             quiterJeu = false;
                         }
@@ -210,9 +205,9 @@ namespace MorpionApp
                         }
                         break;
                     case ConsoleKey.Enter:
-                        if (grille[row, column] is ' ')
+                        if (etatJeu.Grille[row, column] is ' ')
                         {
-                            grille[row, column] = 'O';
+                            etatJeu.Grille[row, column] = 'O';
                             moved = true;
                             quiterJeu = false;
                         }
@@ -224,37 +219,37 @@ namespace MorpionApp
         public void affichePlateau()
         {
             Console.WriteLine();
-            Console.WriteLine($" {grille[0, 0]}  |  {grille[0, 1]}  |  {grille[0, 2]}");
+            Console.WriteLine($" {etatJeu.Grille[0, 0]}  |  {etatJeu.Grille[0, 1]}  |  {etatJeu.Grille[0, 2]}");
             Console.WriteLine("    |     |");
             Console.WriteLine("----+-----+----");
             Console.WriteLine("    |     |");
-            Console.WriteLine($" {grille[1, 0]}  |  {grille[1, 1]}  |  {grille[1, 2]}");
+            Console.WriteLine($" {etatJeu.Grille[1, 0]}  |  {etatJeu.Grille[1, 1]}  |  {etatJeu.Grille[1, 2]}");
             Console.WriteLine("    |     |");
             Console.WriteLine("----+-----+----");
             Console.WriteLine("    |     |");
-            Console.WriteLine($" {grille[2, 0]}  |  {grille[1, 1]}  |  {grille[0, 2]}");
+            Console.WriteLine($" {etatJeu.Grille[2, 0]}  |  {etatJeu.Grille[1, 1]}  |  {etatJeu.Grille[0, 2]}");
         }
 
         public bool verifVictoire(char c) =>
-             grille[0, 0] == c && grille[1, 0] == c && grille[2, 0] == c ||
-             grille[0, 1] == c && grille[1, 1] == c && grille[2, 1] == c ||
-             grille[0, 2] == c && grille[1, 2] == c && grille[2, 2] == c ||
-             grille[0, 0] == c && grille[1, 1] == c && grille[2, 2] == c ||
-             grille[1, 0] == c && grille[1, 1] == c && grille[1, 2] == c ||
-             grille[2, 0] == c && grille[2, 1] == c && grille[2, 2] == c ||
-             grille[0, 0] == c && grille[1, 1] == c && grille[2, 2] == c ||
-             grille[2, 0] == c && grille[1, 1] == c && grille[0, 2] == c;
+            etatJeu.Grille[0, 0] == c && etatJeu.Grille[1, 0] == c && etatJeu.Grille[2, 0] == c ||
+            etatJeu.Grille[0, 1] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[2, 1] == c ||
+            etatJeu.Grille[0, 2] == c && etatJeu.Grille[1, 2] == c && etatJeu.Grille[2, 2] == c ||
+            etatJeu.Grille[0, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[2, 2] == c ||
+            etatJeu.Grille[1, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[1, 2] == c ||
+            etatJeu.Grille[2, 0] == c && etatJeu.Grille[2, 1] == c && etatJeu.Grille[2, 2] == c ||
+            etatJeu.Grille[0, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[2, 2] == c ||
+            etatJeu.Grille[2, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[0, 2] == c;
 
         public bool verifEgalite() =>
-            grille[0, 0] != ' ' && grille[1, 0] != ' ' && grille[2, 0] != ' ' &&
-            grille[0, 1] != ' ' && grille[1, 1] != ' ' && grille[2, 1] != ' ' &&
-            grille[0, 2] != ' ' && grille[1, 2] != ' ' && grille[2, 2] != ' ';
+            etatJeu.Grille[0, 0] != ' ' && etatJeu.Grille[1, 0] != ' ' && etatJeu.Grille[2, 0] != ' ' &&
+            etatJeu.Grille[0, 1] != ' ' && etatJeu.Grille[1, 1] != ' ' && etatJeu.Grille[2, 1] != ' ' &&
+            etatJeu.Grille[0, 2] != ' ' && etatJeu.Grille[1, 2] != ' ' && etatJeu.Grille[2, 2] != ' ';
 
 
         public void finPartie(string msg)
         {
             Console.Clear();
-            affichePlateau();
+            etatJeu.AfficherGrille();
             Console.WriteLine(msg);
         }
     }

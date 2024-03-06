@@ -3,28 +3,21 @@
 namespace MorpionApp
 {
     public class PuissanceQuatre : IJeu
-
     {
-    public bool quiterJeu = false;
-    public bool tourDuJoueur = true;
-    public char[,] grille;
+        private EtatJeu etatJeu;
+        public bool quiterJeu = false;
+        public bool tourDuJoueur = true;
 
     public PuissanceQuatre()
     {
-        grille = new char[4, 7];
+        etatJeu = new EtatJeu(4, 7);
     }
 
     public void BoucleJeu()
     {
         while (!quiterJeu)
         {
-            grille = new char[4, 7]
-            {
-                { ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                { ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                { ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                { ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-            };
+            etatJeu.InitialiserGrille();
             while (!quiterJeu)
             {
                 if (tourDuJoueur)
@@ -128,7 +121,7 @@ namespace MorpionApp
                         }
                     }
 
-                    while (grille[row, column] is 'X' or 'O')
+                    while (etatJeu.Grille[row, column] is 'X' or 'O')
                     {
                         if (row == 0)
                         {
@@ -138,9 +131,9 @@ namespace MorpionApp
                         row = row - 1;
                     }
 
-                    if (grille[row, column] is ' ')
+                    if (etatJeu.Grille[row, column] is ' ')
                     {
-                        grille[row, column] = 'X';
+                        etatJeu.Grille[row, column] = 'X';
                         moved = true;
                         quiterJeu = false;
                     }
@@ -205,7 +198,7 @@ namespace MorpionApp
                         }
                     }
 
-                    while (grille[row, column] is 'X' or 'O')
+                    while (etatJeu.Grille[row, column] is 'X' or 'O')
                     {
                         if (row == 0)
                         {
@@ -215,9 +208,9 @@ namespace MorpionApp
                         row = row - 1;
                     }
 
-                    if (grille[row, column] is ' ')
+                    if (etatJeu.Grille[row, column] is ' ')
                     {
-                        grille[row, column] = 'O';
+                        etatJeu.Grille[row, column] = 'O';
                         moved = true;
                         quiterJeu = false;
                     }
@@ -231,68 +224,68 @@ namespace MorpionApp
     {
         Console.WriteLine();
         Console.WriteLine(
-            $" {grille[0, 0]}  |  {grille[0, 1]}  |  {grille[0, 2]}  |  {grille[0, 3]}  |  {grille[0, 4]}  |  {grille[0, 5]}  |  {grille[0, 6]}");
+            $" {etatJeu.Grille[0, 0]}  |  {etatJeu.Grille[0, 1]}  |  {etatJeu.Grille[0, 2]}  |  {etatJeu.Grille[0, 3]}  |  {etatJeu.Grille[0, 4]}  |  {etatJeu.Grille[0, 5]}  |  {etatJeu.Grille[0, 6]}");
         Console.WriteLine("    |     |     |     |     |     |");
         Console.WriteLine("----+-----+-----+-----+-----+-----+----");
         Console.WriteLine("    |     |     |     |     |     |");
         Console.WriteLine(
-            $" {grille[1, 0]}  |  {grille[1, 1]}  |  {grille[1, 2]}  |  {grille[1, 3]}  |  {grille[1, 4]}  |  {grille[1, 5]}  |  {grille[1, 6]}");
+            $" {etatJeu.Grille[1, 0]}  |  {etatJeu.Grille[1, 1]}  |  {etatJeu.Grille[1, 2]}  |  {etatJeu.Grille[1, 3]}  |  {etatJeu.Grille[1, 4]}  |  {etatJeu.Grille[1, 5]}  |  {etatJeu.Grille[1, 6]}");
         Console.WriteLine("    |     |     |     |     |     |");
         Console.WriteLine("----+-----+-----+-----+-----+-----+----");
         Console.WriteLine("    |     |     |     |     |     |");
         Console.WriteLine(
-            $" {grille[2, 0]}  |  {grille[2, 1]}  |  {grille[2, 2]}  |  {grille[2, 3]}  |  {grille[2, 4]}  |  {grille[2, 5]}  |  {grille[1, 6]}");
+            $" {etatJeu.Grille[2, 0]}  |  {etatJeu.Grille[2, 1]}  |  {etatJeu.Grille[2, 2]}  |  {etatJeu.Grille[2, 3]}  |  {etatJeu.Grille[2, 4]}  |  {etatJeu.Grille[2, 5]}  |  {etatJeu.Grille[1, 6]}");
         Console.WriteLine("    |     |     |     |     |     |");
         Console.WriteLine("----+-----+-----+-----+-----+-----+----");
         Console.WriteLine("    |     |     |     |     |     |");
         Console.WriteLine(
-            $" {grille[3, 0]}  |  {grille[3, 1]}  |  {grille[3, 2]}  |  {grille[3, 3]}  |  {grille[3, 4]}  |  {grille[3, 5]}  |  {grille[1, 6]}");
+            $" {etatJeu.Grille[3, 0]}  |  {etatJeu.Grille[3, 1]}  |  {etatJeu.Grille[3, 2]}  |  {etatJeu.Grille[3, 3]}  |  {etatJeu.Grille[3, 4]}  |  {etatJeu.Grille[3, 5]}  |  {etatJeu.Grille[1, 6]}");
         Console.WriteLine("    |     |     |     |     |     |");
         Console.WriteLine("----+-----+-----+-----+-----+-----+----");
     }
 
     public bool verifVictoire(char c) =>
-        grille[0, 0] == c && grille[1, 0] == c && grille[2, 0] == c && grille[3, 0] == c ||
-        grille[0, 1] == c && grille[1, 1] == c && grille[2, 1] == c && grille[3, 1] == c ||
-        grille[0, 2] == c && grille[1, 2] == c && grille[2, 2] == c && grille[3, 2] == c ||
-        grille[0, 3] == c && grille[1, 3] == c && grille[2, 3] == c && grille[3, 3] == c ||
-        grille[0, 4] == c && grille[1, 4] == c && grille[2, 4] == c && grille[3, 4] == c ||
-        grille[0, 5] == c && grille[1, 5] == c && grille[2, 5] == c && grille[3, 5] == c ||
-        grille[0, 6] == c && grille[1, 6] == c && grille[2, 6] == c && grille[3, 6] == c ||
-        grille[0, 0] == c && grille[0, 1] == c && grille[0, 2] == c && grille[0, 3] == c ||
-        grille[0, 1] == c && grille[0, 2] == c && grille[0, 3] == c && grille[0, 4] == c ||
-        grille[0, 2] == c && grille[0, 3] == c && grille[0, 3] == c && grille[0, 5] == c ||
-        grille[0, 3] == c && grille[0, 4] == c && grille[0, 5] == c && grille[0, 6] == c ||
-        grille[1, 0] == c && grille[1, 1] == c && grille[1, 2] == c && grille[1, 3] == c ||
-        grille[1, 1] == c && grille[1, 2] == c && grille[1, 3] == c && grille[1, 4] == c ||
-        grille[1, 2] == c && grille[1, 3] == c && grille[1, 4] == c && grille[1, 5] == c ||
-        grille[1, 4] == c && grille[1, 4] == c && grille[1, 5] == c && grille[1, 6] == c ||
-        grille[2, 0] == c && grille[2, 1] == c && grille[2, 2] == c && grille[2, 3] == c ||
-        grille[2, 1] == c && grille[2, 2] == c && grille[2, 3] == c && grille[2, 4] == c ||
-        grille[2, 2] == c && grille[2, 3] == c && grille[2, 3] == c && grille[2, 5] == c ||
-        grille[2, 3] == c && grille[2, 4] == c && grille[2, 5] == c && grille[2, 6] == c ||
-        grille[3, 0] == c && grille[3, 1] == c && grille[3, 2] == c && grille[3, 3] == c ||
-        grille[3, 1] == c && grille[3, 2] == c && grille[3, 3] == c && grille[3, 4] == c ||
-        grille[3, 2] == c && grille[3, 3] == c && grille[3, 4] == c && grille[3, 5] == c ||
-        grille[3, 3] == c && grille[3, 4] == c && grille[3, 5] == c && grille[3, 6] == c ||
-        grille[0, 0] == c && grille[1, 1] == c && grille[2, 2] == c && grille[3, 3] == c ||
-        grille[0, 1] == c && grille[1, 2] == c && grille[2, 3] == c && grille[3, 4] == c ||
-        grille[0, 2] == c && grille[1, 3] == c && grille[2, 4] == c && grille[3, 5] == c ||
-        grille[0, 3] == c && grille[1, 4] == c && grille[2, 5] == c && grille[3, 6] == c ||
-        grille[0, 3] == c && grille[1, 2] == c && grille[2, 1] == c && grille[3, 0] == c ||
-        grille[0, 4] == c && grille[1, 4] == c && grille[2, 2] == c && grille[3, 1] == c ||
-        grille[0, 5] == c && grille[1, 3] == c && grille[2, 3] == c && grille[3, 2] == c ||
-        grille[0, 6] == c && grille[1, 5] == c && grille[2, 4] == c && grille[3, 3] == c;
+        etatJeu.Grille[0, 0] == c && etatJeu.Grille[1, 0] == c && etatJeu.Grille[2, 0] == c && etatJeu.Grille[3, 0] == c ||
+        etatJeu.Grille[0, 1] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[2, 1] == c && etatJeu.Grille[3, 1] == c ||
+        etatJeu.Grille[0, 2] == c && etatJeu.Grille[1, 2] == c && etatJeu.Grille[2, 2] == c && etatJeu.Grille[3, 2] == c ||
+        etatJeu.Grille[0, 3] == c && etatJeu.Grille[1, 3] == c && etatJeu.Grille[2, 3] == c && etatJeu.Grille[3, 3] == c ||
+        etatJeu.Grille[0, 4] == c && etatJeu.Grille[1, 4] == c && etatJeu.Grille[2, 4] == c && etatJeu.Grille[3, 4] == c ||
+        etatJeu.Grille[0, 5] == c && etatJeu.Grille[1, 5] == c && etatJeu.Grille[2, 5] == c && etatJeu.Grille[3, 5] == c ||
+        etatJeu.Grille[0, 6] == c && etatJeu.Grille[1, 6] == c && etatJeu.Grille[2, 6] == c && etatJeu.Grille[3, 6] == c ||
+        etatJeu.Grille[0, 0] == c && etatJeu.Grille[0, 1] == c && etatJeu.Grille[0, 2] == c && etatJeu.Grille[0, 3] == c ||
+        etatJeu.Grille[0, 1] == c && etatJeu.Grille[0, 2] == c && etatJeu.Grille[0, 3] == c && etatJeu.Grille[0, 4] == c ||
+        etatJeu.Grille[0, 2] == c && etatJeu.Grille[0, 3] == c && etatJeu.Grille[0, 3] == c && etatJeu.Grille[0, 5] == c ||
+        etatJeu.Grille[0, 3] == c && etatJeu.Grille[0, 4] == c && etatJeu.Grille[0, 5] == c && etatJeu.Grille[0, 6] == c ||
+        etatJeu.Grille[1, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[1, 2] == c && etatJeu.Grille[1, 3] == c ||
+        etatJeu.Grille[1, 1] == c && etatJeu.Grille[1, 2] == c && etatJeu.Grille[1, 3] == c && etatJeu.Grille[1, 4] == c ||
+        etatJeu.Grille[1, 2] == c && etatJeu.Grille[1, 3] == c && etatJeu.Grille[1, 4] == c && etatJeu.Grille[1, 5] == c ||
+        etatJeu.Grille[1, 4] == c && etatJeu.Grille[1, 4] == c && etatJeu.Grille[1, 5] == c && etatJeu.Grille[1, 6] == c ||
+        etatJeu.Grille[2, 0] == c && etatJeu.Grille[2, 1] == c && etatJeu.Grille[2, 2] == c && etatJeu.Grille[2, 3] == c ||
+        etatJeu.Grille[2, 1] == c && etatJeu.Grille[2, 2] == c && etatJeu.Grille[2, 3] == c && etatJeu.Grille[2, 4] == c ||
+        etatJeu.Grille[2, 2] == c && etatJeu.Grille[2, 3] == c && etatJeu.Grille[2, 3] == c && etatJeu.Grille[2, 5] == c ||
+        etatJeu.Grille[2, 3] == c && etatJeu.Grille[2, 4] == c && etatJeu.Grille[2, 5] == c && etatJeu.Grille[2, 6] == c ||
+        etatJeu.Grille[3, 0] == c && etatJeu.Grille[3, 1] == c && etatJeu.Grille[3, 2] == c && etatJeu.Grille[3, 3] == c ||
+        etatJeu.Grille[3, 1] == c && etatJeu.Grille[3, 2] == c && etatJeu.Grille[3, 3] == c && etatJeu.Grille[3, 4] == c ||
+        etatJeu.Grille[3, 2] == c && etatJeu.Grille[3, 3] == c && etatJeu.Grille[3, 4] == c && etatJeu.Grille[3, 5] == c ||
+        etatJeu.Grille[3, 3] == c && etatJeu.Grille[3, 4] == c && etatJeu.Grille[3, 5] == c && etatJeu.Grille[3, 6] == c ||
+        etatJeu.Grille[0, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[2, 2] == c && etatJeu.Grille[3, 3] == c ||
+        etatJeu.Grille[0, 1] == c && etatJeu.Grille[1, 2] == c && etatJeu.Grille[2, 3] == c && etatJeu.Grille[3, 4] == c ||
+        etatJeu.Grille[0, 2] == c && etatJeu.Grille[1, 3] == c && etatJeu.Grille[2, 4] == c && etatJeu.Grille[3, 5] == c ||
+        etatJeu.Grille[0, 3] == c && etatJeu.Grille[1, 4] == c && etatJeu.Grille[2, 5] == c && etatJeu.Grille[3, 6] == c ||
+        etatJeu.Grille[0, 3] == c && etatJeu.Grille[1, 2] == c && etatJeu.Grille[2, 1] == c && etatJeu.Grille[3, 0] == c ||
+        etatJeu.Grille[0, 4] == c && etatJeu.Grille[1, 4] == c && etatJeu.Grille[2, 2] == c && etatJeu.Grille[3, 1] == c ||
+        etatJeu.Grille[0, 5] == c && etatJeu.Grille[1, 3] == c && etatJeu.Grille[2, 3] == c && etatJeu.Grille[3, 2] == c ||
+        etatJeu.Grille[0, 6] == c && etatJeu.Grille[1, 5] == c && etatJeu.Grille[2, 4] == c && etatJeu.Grille[3, 3] == c;
 
     public bool verifEgalite() =>
-        grille[0, 0] != ' ' && grille[0, 1] != ' ' && grille[0, 2] != ' ' && grille[0, 3] != ' ' &&
-        grille[0, 4] != ' ' && grille[0, 5] != ' ' && grille[0, 6] != ' ' &&
-        grille[1, 0] != ' ' && grille[1, 1] != ' ' && grille[1, 2] != ' ' && grille[1, 3] != ' ' &&
-        grille[1, 4] != ' ' && grille[1, 5] != ' ' && grille[1, 6] != ' ' &&
-        grille[2, 0] != ' ' && grille[2, 1] != ' ' && grille[1, 2] != ' ' && grille[2, 3] != ' ' &&
-        grille[2, 4] != ' ' && grille[2, 5] != ' ' && grille[2, 6] != ' ' &&
-        grille[3, 0] != ' ' && grille[3, 1] != ' ' && grille[3, 2] != ' ' && grille[3, 3] != ' ' &&
-        grille[3, 4] != ' ' && grille[3, 5] != ' ' && grille[3, 5] != ' ';
+        etatJeu.Grille[0, 0] != ' ' && etatJeu.Grille[0, 1] != ' ' && etatJeu.Grille[0, 2] != ' ' && etatJeu.Grille[0, 3] != ' ' &&
+        etatJeu.Grille[0, 4] != ' ' && etatJeu.Grille[0, 5] != ' ' && etatJeu.Grille[0, 6] != ' ' &&
+        etatJeu.Grille[1, 0] != ' ' && etatJeu.Grille[1, 1] != ' ' && etatJeu.Grille[1, 2] != ' ' && etatJeu.Grille[1, 3] != ' ' &&
+        etatJeu.Grille[1, 4] != ' ' && etatJeu.Grille[1, 5] != ' ' && etatJeu.Grille[1, 6] != ' ' &&
+        etatJeu.Grille[2, 0] != ' ' && etatJeu.Grille[2, 1] != ' ' && etatJeu.Grille[1, 2] != ' ' && etatJeu.Grille[2, 3] != ' ' &&
+        etatJeu.Grille[2, 4] != ' ' && etatJeu.Grille[2, 5] != ' ' && etatJeu.Grille[2, 6] != ' ' &&
+        etatJeu.Grille[3, 0] != ' ' && etatJeu.Grille[3, 1] != ' ' && etatJeu.Grille[3, 2] != ' ' && etatJeu.Grille[3, 3] != ' ' &&
+        etatJeu.Grille[3, 4] != ' ' && etatJeu.Grille[3, 5] != ' ' && etatJeu.Grille[3, 5] != ' ';
 
 
     public void finPartie(string msg)
