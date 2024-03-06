@@ -17,7 +17,6 @@ namespace MorpionApp
 
         private static ConsoleKey ChoisirJeu()
         {
-            ConsoleKey key;
             var input = Console.ReadKey(true).Key;
             switch (input)
             {
