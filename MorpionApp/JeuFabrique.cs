@@ -1,19 +1,20 @@
 using MorpionApp.Interfaces;
 
-namespace MorpionApp;
-
-public class JeuFabrique : IJeuFabrique
+namespace MorpionApp
 {
-    public IJeu CreerJeu(ConsoleKey key)
+    public class JeuFabrique : IJeuFabrique
     {
-        switch (key)
+        public (EtatJeu, IComportementJeu) CreerConfigurationJeu(ConsoleKey key)
         {
-            case ConsoleKey.X:
-                return new Morpion();
-            case ConsoleKey.P:
-                return new PuissanceQuatre();
-            default:
-                throw new ArgumentException("Sélection de jeu invalide.");
+            switch (key)
+            {
+                case ConsoleKey.X:
+                    return (new EtatJeu(3, 3), new ComportementMorpion());
+                case ConsoleKey.P:
+                    return (new EtatJeu(4, 7), new ComportementPuissanceQuatre());
+                default:
+                    throw new ArgumentException("Sélection de jeu invalide.");
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
-namespace MorpionApp.Interfaces;
-
-public interface IJeuFabrique
+namespace MorpionApp.Interfaces
 {
-    IJeu CreerJeu(ConsoleKey key);
+    public interface IJeuFabrique
+    {
+        (EtatJeu etatJeu, IComportementJeu comportementJeu) CreerConfigurationJeu(ConsoleKey key);
+    }
 }
