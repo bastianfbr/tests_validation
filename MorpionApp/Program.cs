@@ -1,5 +1,4 @@
-﻿using System;
-using MorpionApp.Interfaces;
+﻿using MorpionApp.Interfaces;
 
 namespace MorpionApp
 {
@@ -7,33 +6,60 @@ namespace MorpionApp
     {
         static void Main(string[] args)
         {
-            do
+            bool continuer = true;
+            while (continuer)
             {
                 Console.WriteLine("Jouer à quel jeu ? Taper [X] pour le morpion et [P] pour le puissance 4.");
-                LancerJeu(ChoisirJeu());
-                Console.WriteLine("Jouer à un autre jeu ? Taper [R] pour changer de jeu. Taper [Echap] pour quitter.");
-            } while (Console.ReadKey(true).Key == ConsoleKey.R);
+                var choix = ChoisirJeu();
+                LancerJeu(choix);
+
+                bool choixValide = false;
+                while (!choixValide)
+                {
+                    Console.WriteLine("Jouer à un autre jeu ? Taper [R] pour rejouer. Taper [Q] pour quitter.");
+                    var key = Console.ReadKey(true).Key;
+
+                    if (key == ConsoleKey.R)
+                    {
+                        choixValide = true;
+                    }
+                    else if (key == ConsoleKey.Q)
+                    {
+                        choixValide = true;
+                        continuer = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Entrée invalide. Veuillez appuyer sur [R] pour rejouer ou sur [Q] pour quitter.");
+                    }
+                }
+            }
         }
+
 
         private static ConsoleKey ChoisirJeu()
         {
-            var input = Console.ReadKey(true).Key;
-            switch (input)
+            while (true)
             {
-                case ConsoleKey.X:
-                case ConsoleKey.P:
-                    return input;
-                default:
-                    Console.WriteLine("Entrée invalide. Veuillez taper [X] pour le morpion ou [P] pour le puissance 4.");
-                    return ChoisirJeu();
+                var input = Console.ReadKey(true).Key;
+                switch (input)
+                {
+                    case ConsoleKey.X:
+                    case ConsoleKey.P:
+                        return input;
+                    default:
+                        Console.WriteLine("Entrée invalide. Veuillez taper [X] pour le morpion ou [P] pour le puissance 4.");
+                        break;
+                }
             }
         }
 
         private static void LancerJeu(ConsoleKey choix)
         {
             IJeuFabrique jeuFabrique = new JeuFabrique();
-            IJeu jeu = jeuFabrique.CreerJeu(choix);
-            jeu.BoucleJeu();
+            var jeuConfig = jeuFabrique.CreerConfigurationJeu(choix);
+            ControleurDeJeu controleur = new ControleurDeJeu(jeuConfig.etatJeu, jeuConfig.comportementJeu);
+            controleur.DemarrerJeu();
         }
     }
 }
