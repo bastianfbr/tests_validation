@@ -4,17 +4,17 @@ namespace MorpionApp
 {
     public class ControleurDeJeu
     {
-        private EtatJeu etatJeu;
-        private IComportementJeu comportementJeu;
-        
-        private IJoueur joueur1;
-        private IJoueur joueur2;
-        
+        private readonly EtatJeu etatJeu;
+        private readonly IComportementJeu comportementJeu;
+
+        private readonly IJoueur joueur1;
+        private readonly IJoueur joueur2;
+
         public ControleurDeJeu(EtatJeu etatJeu, IComportementJeu comportementJeu, bool jouerContreIA)
         {
             this.etatJeu = etatJeu;
             this.comportementJeu = comportementJeu;
-            
+
             joueur1 = new JoueurHumain('X');
             joueur2 = jouerContreIA ? (IJoueur)new JoueurIA('O') : new JoueurHumain('O');
         }
@@ -36,7 +36,7 @@ namespace MorpionApp
                     Console.WriteLine($"C'est au tour du joueur {joueurActuel.Symbol}. Veuillez choisir une case.");
 
                     partieTerminee = JouerTour(joueurActuel);
-                    
+
                     joueurActuel = (joueurActuel.Symbol == 'X') ? joueur2 : joueur1;
                 }
 
@@ -54,7 +54,7 @@ namespace MorpionApp
                     }
 
                     Console.WriteLine("Appuyez sur [N] pour une nouvelle partie, sur [Q] pour quitter.");
-    
+
                     bool choixValide = false;
                     while (!choixValide)
                     {
@@ -83,13 +83,13 @@ namespace MorpionApp
         private bool JouerTour(IJoueur joueur)
         {
             bool coupValide = false;
-    
+
             while (!coupValide)
             {
                 Console.Clear();
                 etatJeu.AfficherGrille();
                 Console.WriteLine($"C'est au tour du joueur {joueur}. Veuillez choisir une case.");
-                
+
                 var position = joueur.JouerTour(etatJeu, comportementJeu);
                 coupValide = comportementJeu.EffectuerAction(etatJeu, joueur, position);
                 if (!coupValide)

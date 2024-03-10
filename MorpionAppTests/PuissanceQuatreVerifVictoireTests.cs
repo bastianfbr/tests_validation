@@ -4,7 +4,7 @@ namespace MorpionAppTests
 {
     public class PuissanceQuatreVerifVictoireTests : IDisposable
     {
-        private PuissanceQuatre jeu;
+        private readonly PuissanceQuatre jeu;
 
         public PuissanceQuatreVerifVictoireTests()
         {

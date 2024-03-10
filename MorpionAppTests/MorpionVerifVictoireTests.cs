@@ -4,7 +4,7 @@ namespace MorpionAppTests
 {
     public class MorpionVerifVictoireTests : IDisposable
     {
-        private Morpion jeu;
+        private readonly Morpion jeu;
 
         public MorpionVerifVictoireTests()
         {

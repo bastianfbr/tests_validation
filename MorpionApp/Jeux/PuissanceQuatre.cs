@@ -2,7 +2,7 @@
 {
     public class PuissanceQuatre
     {
-        private EtatJeu etatJeu;
+        private readonly EtatJeu etatJeu;
 
         public PuissanceQuatre()
         {

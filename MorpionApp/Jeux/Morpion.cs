@@ -2,7 +2,7 @@
 {
     public class Morpion
     {
-        private EtatJeu etatJeu;
+        private readonly EtatJeu etatJeu;
 
         public Morpion()
         {

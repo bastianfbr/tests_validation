@@ -5,7 +5,7 @@ namespace MorpionAppTests
 {
     public class PuissanceQuatreVerifEgaliteTests : IDisposable
     {
-        private PuissanceQuatre jeu;
+        private readonly PuissanceQuatre jeu;
 
         public PuissanceQuatreVerifEgaliteTests()
         {
@@ -51,7 +51,7 @@ namespace MorpionAppTests
             };
             SetupGrilleEtAssertEgalite(grille);
         }
-        
+
         [Fact]
         [Trait("Category", "verifEgalite")]
         public void EgaliteScenario3()
