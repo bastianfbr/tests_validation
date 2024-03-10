@@ -53,12 +53,31 @@ namespace MorpionApp
                 }
             }
         }
+        
+        private static bool DemanderJoueurIA()
+        {
+            while (true)
+            {
+                Console.WriteLine("Voulez-vous jouer contre l'ordinateur ? Taper [O] pour oui et [N] pour non.");
+                var input = Console.ReadKey(true).Key;
+                switch (input)
+                {
+                    case ConsoleKey.O:
+                        return true;
+                    case ConsoleKey.N:
+                        return false;
+                    default:
+                        Console.WriteLine("Entrée invalide. Veuillez taper [O] pour oui ou [N] pour non.");
+                        break;
+                }
+            }
+        }
 
         private static void LancerJeu(ConsoleKey choix)
         {
             IJeuFabrique jeuFabrique = new JeuFabrique();
             var jeuConfig = jeuFabrique.CreerConfigurationJeu(choix);
-            ControleurDeJeu controleur = new ControleurDeJeu(jeuConfig.etatJeu, jeuConfig.comportementJeu);
+            ControleurDeJeu controleur = new ControleurDeJeu(jeuConfig.etatJeu, jeuConfig.comportementJeu, DemanderJoueurIA());
             controleur.DemarrerJeu();
         }
     }

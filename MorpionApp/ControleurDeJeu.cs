@@ -1,5 +1,4 @@
 using MorpionApp.Interfaces;
-using MorpionApp.Structures;
 
 namespace MorpionApp
 {
@@ -11,10 +10,13 @@ namespace MorpionApp
         private IJoueur joueur1;
         private IJoueur joueur2;
         
-        public ControleurDeJeu(EtatJeu etatJeu, IComportementJeu comportementJeu)
+        public ControleurDeJeu(EtatJeu etatJeu, IComportementJeu comportementJeu, bool jouerContreIA)
         {
             this.etatJeu = etatJeu;
             this.comportementJeu = comportementJeu;
+            
+            joueur1 = new JoueurHumain('X');
+            joueur2 = jouerContreIA ? (IJoueur)new JoueurIA('O') : new JoueurHumain('O');
         }
 
         public void DemarrerJeu()
