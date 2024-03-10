@@ -1,12 +1,14 @@
+using MorpionApp.Structures;
+
 namespace MorpionApp.Interfaces;
 
 public interface IComportementJeu
 {
-    bool EffectuerAction(EtatJeu etatJeu, char playerSymbol, ref int row, ref int column);
-    (int cursorLeft, int cursorTop) CalculerPositionCurseur(int row, int column);
+    bool EffectuerAction(EtatJeu etatJeu, Joueur joueur, Position position);
+    (int cursorLeft, int cursorTop) CalculerPositionCurseur(Position position);
 
-    public (int row, int col) ObtenirEntreeUtilisateur(EtatJeu etatJeu);
+    public Position ObtenirEntreeUtilisateur(EtatJeu etatJeu);
     
-    bool VerifVictoire(EtatJeu etatJeu, char c);
+    bool VerifVictoire(EtatJeu etatJeu, Joueur joueur);
     bool VerifEgalite(EtatJeu etatJeu);
 }

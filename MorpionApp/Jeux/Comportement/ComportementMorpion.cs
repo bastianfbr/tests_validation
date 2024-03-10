@@ -1,32 +1,33 @@
 using MorpionApp.Interfaces;
+using MorpionApp.Structures;
 
 namespace MorpionApp;
 
 public class ComportementMorpion : IComportementJeu
 {
-    public bool EffectuerAction(EtatJeu etatJeu, char playerSymbol, ref int row, ref int column)
+    public bool EffectuerAction(EtatJeu etatJeu, Joueur joueur, Position position)
     {
-        if (etatJeu.Grille[row, column] == ' ')
+        if (etatJeu.Grille[position.Row, position.Column] == ' ')
         {
-            etatJeu.Grille[row, column] = playerSymbol;
+            etatJeu.Grille[position.Row, position.Column] = joueur.Symbol;
             return true;
         }
         return false;
     }
 
-    public (int cursorLeft, int cursorTop) CalculerPositionCurseur(int row, int column)
+    public (int cursorLeft, int cursorTop) CalculerPositionCurseur(Position position)
     {
-        return (column * 6 + 1, row * 2);
+        return (position.Column * 6 + 1, position.Row * 2);
     }
     
-    public (int row, int col) ObtenirEntreeUtilisateur(EtatJeu etatJeu)
+    public Position ObtenirEntreeUtilisateur(EtatJeu etatJeu)
     {
         int row = 0, col = 0;
         bool choixValide = false;
 
         while (!choixValide)
         {
-            Console.SetCursorPosition(CalculerPositionCurseur(row, col).cursorLeft, CalculerPositionCurseur(row, col).cursorTop);
+            Console.SetCursorPosition(CalculerPositionCurseur(new Position(row, col)).cursorLeft, CalculerPositionCurseur(new Position(row, col)).cursorTop);
             var key = Console.ReadKey(true).Key;
 
             switch (key)
@@ -52,19 +53,19 @@ public class ComportementMorpion : IComportementJeu
             }
         }
 
-        return (row, col);
+        return new Position(row, col);
     }
 
 
-    public bool VerifVictoire(EtatJeu etatJeu, char c) =>
-        etatJeu.Grille[0, 0] == c && etatJeu.Grille[1, 0] == c && etatJeu.Grille[2, 0] == c ||
-        etatJeu.Grille[0, 1] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[2, 1] == c ||
-        etatJeu.Grille[0, 2] == c && etatJeu.Grille[1, 2] == c && etatJeu.Grille[2, 2] == c ||
-        etatJeu.Grille[0, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[2, 2] == c ||
-        etatJeu.Grille[1, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[1, 2] == c ||
-        etatJeu.Grille[2, 0] == c && etatJeu.Grille[2, 1] == c && etatJeu.Grille[2, 2] == c ||
-        etatJeu.Grille[0, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[2, 2] == c ||
-        etatJeu.Grille[2, 0] == c && etatJeu.Grille[1, 1] == c && etatJeu.Grille[0, 2] == c;
+    public bool VerifVictoire(EtatJeu etatJeu, Joueur joueur) =>
+        etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 0] == joueur.Symbol && etatJeu.Grille[2, 0] == joueur.Symbol ||
+        etatJeu.Grille[0, 1] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 1] == joueur.Symbol ||
+        etatJeu.Grille[0, 2] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol ||
+        etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol ||
+        etatJeu.Grille[1, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol ||
+        etatJeu.Grille[2, 0] == joueur.Symbol && etatJeu.Grille[2, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol ||
+        etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol ||
+        etatJeu.Grille[2, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[0, 2] == joueur.Symbol;
     
     public bool VerifEgalite(EtatJeu etatJeu) =>
     etatJeu.Grille[0, 0] != ' ' && etatJeu.Grille[1, 0] != ' ' && etatJeu.Grille[2, 0] != ' ' &&

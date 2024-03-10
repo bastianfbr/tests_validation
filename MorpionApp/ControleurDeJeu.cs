@@ -1,4 +1,5 @@
 using MorpionApp.Interfaces;
+using MorpionApp.Structures;
 
 namespace MorpionApp
 {
@@ -6,6 +7,9 @@ namespace MorpionApp
     {
         private EtatJeu etatJeu;
         private IComportementJeu comportementJeu;
+        
+        Joueur joueur1 = new Joueur('X');
+        Joueur joueur2 = new Joueur('O');
         
         public ControleurDeJeu(EtatJeu etatJeu, IComportementJeu comportementJeu)
         {
@@ -16,7 +20,7 @@ namespace MorpionApp
         public void DemarrerJeu()
         {
             bool quitterJeu = false;
-            char joueurActuel = 'X';
+            Joueur joueurActuel = joueur1;
 
             while (!quitterJeu)
             {
@@ -27,20 +31,20 @@ namespace MorpionApp
                 {
                     Console.Clear();
                     etatJeu.AfficherGrille();
-                    Console.WriteLine($"C'est au tour du joueur {joueurActuel}. Veuillez choisir une case.");
+                    Console.WriteLine($"C'est au tour du joueur {joueurActuel.Symbol}. Veuillez choisir une case.");
 
                     partieTerminee = JouerTour(joueurActuel);
                     
-                    joueurActuel = (joueurActuel == 'X') ? 'O' : 'X';
+                    joueurActuel = (joueurActuel.Symbol == 'X') ? joueur2 : joueur1;
                 }
 
                 if (partieTerminee)
                 {
                     Console.Clear();
                     etatJeu.AfficherGrille();
-                    if (comportementJeu.VerifVictoire(etatJeu, (joueurActuel == 'X' ? 'O' : 'X')))
+                    if (comportementJeu.VerifVictoire(etatJeu, (joueurActuel.Symbol == joueur1.Symbol ? joueur2 : joueur1)))
                     {
-                        Console.WriteLine($"Le joueur {(joueurActuel == 'X' ? 'O' : 'X')} a gagné !");
+                        Console.WriteLine($"Le joueur {(joueurActuel.Symbol == joueur1.Symbol ? joueur2 : joueur1).Symbol} a gagné !");
                     }
                     else if (comportementJeu.VerifEgalite(etatJeu))
                     {
@@ -74,7 +78,7 @@ namespace MorpionApp
             }
         }
 
-        private bool JouerTour(char joueur)
+        private bool JouerTour(Joueur joueur)
         {
             bool coupValide = false;
     
@@ -84,9 +88,9 @@ namespace MorpionApp
                 etatJeu.AfficherGrille();
                 Console.WriteLine($"C'est au tour du joueur {joueur}. Veuillez choisir une case.");
                 
-                var (row, col) = comportementJeu.ObtenirEntreeUtilisateur(etatJeu);
+                var position = comportementJeu.ObtenirEntreeUtilisateur(etatJeu);
 
-                coupValide = comportementJeu.EffectuerAction(etatJeu, joueur, ref row, ref col);
+                coupValide = comportementJeu.EffectuerAction(etatJeu, joueur, position);
                 if (!coupValide)
                 {
                     Console.WriteLine("Coup invalide, veuillez réessayer.");
