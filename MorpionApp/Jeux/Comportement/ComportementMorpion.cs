@@ -5,7 +5,7 @@ namespace MorpionApp;
 
 public class ComportementMorpion : IComportementJeu
 {
-    public bool EffectuerAction(EtatJeu etatJeu, Joueur joueur, Position position)
+    public bool EffectuerAction(EtatJeu etatJeu, IJoueur joueur, Position position)
     {
         if (etatJeu.Grille[position.Row, position.Column] == ' ')
         {
@@ -57,7 +57,7 @@ public class ComportementMorpion : IComportementJeu
     }
 
 
-    public bool VerifVictoire(EtatJeu etatJeu, Joueur joueur) =>
+    public bool VerifVictoire(EtatJeu etatJeu, IJoueur joueur) =>
         etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 0] == joueur.Symbol && etatJeu.Grille[2, 0] == joueur.Symbol ||
         etatJeu.Grille[0, 1] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 1] == joueur.Symbol ||
         etatJeu.Grille[0, 2] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol ||

@@ -8,8 +8,8 @@ namespace MorpionApp
         private EtatJeu etatJeu;
         private IComportementJeu comportementJeu;
         
-        Joueur joueur1 = new Joueur('X');
-        Joueur joueur2 = new Joueur('O');
+        private IJoueur joueur1;
+        private IJoueur joueur2;
         
         public ControleurDeJeu(EtatJeu etatJeu, IComportementJeu comportementJeu)
         {
@@ -20,7 +20,7 @@ namespace MorpionApp
         public void DemarrerJeu()
         {
             bool quitterJeu = false;
-            Joueur joueurActuel = joueur1;
+            IJoueur joueurActuel = joueur1;
 
             while (!quitterJeu)
             {
@@ -78,7 +78,7 @@ namespace MorpionApp
             }
         }
 
-        private bool JouerTour(Joueur joueur)
+        private bool JouerTour(IJoueur joueur)
         {
             bool coupValide = false;
     
@@ -88,8 +88,7 @@ namespace MorpionApp
                 etatJeu.AfficherGrille();
                 Console.WriteLine($"C'est au tour du joueur {joueur}. Veuillez choisir une case.");
                 
-                var position = comportementJeu.ObtenirEntreeUtilisateur(etatJeu);
-
+                var position = joueur.JouerTour(etatJeu, comportementJeu);
                 coupValide = comportementJeu.EffectuerAction(etatJeu, joueur, position);
                 if (!coupValide)
                 {
