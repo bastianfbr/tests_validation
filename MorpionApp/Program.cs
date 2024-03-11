@@ -2,7 +2,7 @@
 
 namespace MorpionApp
 {
-    public class Program
+    public static class Program
     {
         static void Main(string[] args)
         {
@@ -53,7 +53,7 @@ namespace MorpionApp
                 }
             }
         }
-        
+
         private static bool DemanderJoueurIA()
         {
             while (true)
