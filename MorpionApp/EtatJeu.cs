@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace MorpionApp;
 
 public class EtatJeu
@@ -23,33 +25,36 @@ public class EtatJeu
 
     public void AfficherGrille()
     {
+        StringBuilder sb = new StringBuilder();
+
         for (int i = 0; i < Grille.GetLength(0); i++)
         {
             for (int j = 0; j < Grille.GetLength(1); j++)
             {
-                Console.Write(" ");
-                Console.Write(Grille[i, j]);
-                Console.Write(" ");
+                sb.Append(' ');
+                sb.Append(Grille[i, j]);
+                sb.Append(" ");
                 if (j < Grille.GetLength(1) - 1)
                 {
-                    Console.Write(" | ");
+                    sb.Append(" | ");
                 }
             }
 
-            Console.WriteLine();
+            sb.AppendLine();
 
             string separator = "----";
             for (int col = 2; col < Grille.GetLength(1); col++)
             {
                 separator += "+-----";
             }
-            separator += (Grille.GetLength(1) == 7) ? "+----" : "+----";
+            separator += "+----"; // Use this line consistently
 
             if (i < Grille.GetLength(0) - 1)
             {
-                Console.WriteLine(separator);
+                sb.AppendLine(separator);
             }
-
         }
+
+        Console.Write(sb.ToString());
     }
 }
