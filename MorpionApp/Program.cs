@@ -1,8 +1,6 @@
 ﻿using MorpionApp.Interfaces;
 using MorpionApp.Jeux;
 
-using System.IO;
-
 namespace MorpionApp
 {
     public static class Program
@@ -15,7 +13,7 @@ namespace MorpionApp
                 if (!File.Exists("sauvegarde.json"))
                 {
                     var choix = JeuConsole.ChoisirJeu();
-                    LancerJeu(choix, null);
+                    LancerJeu(choix, null, JeuConsole.DemanderJoueurIA());
                     continuer = JeuConsole.DemanderRejouer();
                 }
                 else
@@ -27,22 +25,24 @@ namespace MorpionApp
                         var (etatJeu, typeJeu, estJoueurIA) = SauvegardeJeu.Charger();
                         ConsoleKey jeuChoisi = typeJeu == "ComportementMorpion" ? ConsoleKey.X : ConsoleKey.P;
                         LancerJeu(jeuChoisi, etatJeu, estJoueurIA);
-                        File.Delete("sauvegarde.json"); // Suppression après chargement
+                        File.Delete("sauvegarde.json");
                         continuer = JeuConsole.DemanderRejouer();
                     }
                     else
                     {
-                        File.Delete("sauvegarde.json"); // Suppression si l'utilisateur ne veut pas reprendre la partie
+                        File.Delete("sauvegarde.json");
+                        var choixJeu = JeuConsole.ChoisirJeu();
+                        LancerJeu(choixJeu, null, JeuConsole.DemanderJoueurIA());
+                        continuer = JeuConsole.DemanderRejouer();
                     }
                 }
             }
         }
 
-        private static void LancerJeu(ConsoleKey choix, EtatJeu? sauvegarde = null, bool estJoueurIA = false)
+        private static void LancerJeu(ConsoleKey choix, EtatJeu? sauvegarde, bool estJoueurIA)
         {
             IJeuFabrique jeuFabrique = new JeuFabrique();
             var jeuConfig = jeuFabrique.CreerConfigurationJeu(choix);
-            // Passer estJoueurIA et l'état de jeu si présent
             ControleurDeJeu controleur = new ControleurDeJeu(sauvegarde ?? jeuConfig.etatJeu, jeuConfig.comportementJeu, estJoueurIA);
             controleur.DemarrerJeu();
         }
