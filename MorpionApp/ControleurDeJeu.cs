@@ -35,7 +35,7 @@ namespace MorpionApp
                     etatJeu.AfficherGrille();
                     Console.WriteLine($"C'est au tour du joueur {joueurActuel.Symbol}. Veuillez choisir une case.");
 
-                    partieTerminee = JouerTour(joueurActuel);
+                    partieTerminee = EffectuerTour(joueurActuel);
 
                     joueurActuel = (joueurActuel.Symbol == 'X') ? joueur2 : joueur1;
                 }
@@ -80,7 +80,7 @@ namespace MorpionApp
             }
         }
 
-        private bool JouerTour(IJoueur joueur)
+        private bool EffectuerTour(IJoueur joueur)
         {
             bool coupValide = false;
 
