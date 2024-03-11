@@ -44,6 +44,7 @@ namespace MorpionApp
 
                 if (partieTerminee)
                 {
+                    File.Delete("sauvegarde.json");
                     Console.Clear();
                     etatJeu.AfficherGrille();
                     if (comportementJeu.VerifVictoire(etatJeu, (joueurActuel.Symbol == joueur1.Symbol ? joueur2 : joueur1)))
@@ -90,8 +91,7 @@ namespace MorpionApp
             {
                 Console.Clear();
                 etatJeu.AfficherGrille();
-                // Sauvegarder le jeu ici
-                Console.WriteLine($"C'est au tour du joueur {joueur}. Veuillez choisir une case.");
+                Console.WriteLine($"C'est au tour du joueur {joueur.Symbol}. Veuillez choisir une case.");
 
                 var position = joueur.JouerTour(etatJeu, comportementJeu);
                 coupValide = comportementJeu.EffectuerAction(etatJeu, joueur, position);
