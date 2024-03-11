@@ -36,6 +36,7 @@ namespace MorpionApp
                     etatJeu.AfficherGrille();
                     Console.WriteLine($"C'est au tour du joueur {joueurActuel.Symbol}. Veuillez choisir une case.");
 
+                    SauvegarderEtatJeu();
                     partieTerminee = EffectuerTour(joueurActuel);
 
                     joueurActuel = (joueurActuel.Symbol == 'X') ? joueur2 : joueur1;
@@ -115,6 +116,12 @@ namespace MorpionApp
             }
 
             return false;
+        }
+        
+        private void SauvegarderEtatJeu()
+        {
+            var sauvegarde = new SauvegardeJeu(etatJeu, comportementJeu.GetType().Name, joueur2 is JoueurIA);
+            sauvegarde.Sauvegarder();
         }
 
     }

@@ -12,7 +12,7 @@ namespace MorpionApp
             bool continuer = true;
             while (continuer)
             {
-                if (!File.Exists("sauvegarde.txt"))
+                if (!File.Exists("sauvegarde.json"))
                 {
                     var choix = JeuConsole.ChoisirJeu();
                     LancerJeu(choix, null);
@@ -24,17 +24,26 @@ namespace MorpionApp
 
                     if (choix)
                     {
-                        // Charger la sauvegarde et continuer le jeu
+                        var (etatJeu, typeJeu, estJoueurIA) = SauvegardeJeu.Charger();
+                        ConsoleKey jeuChoisi = typeJeu == "ComportementMorpion" ? ConsoleKey.X : ConsoleKey.P;
+                        LancerJeu(jeuChoisi, etatJeu, estJoueurIA);
+                        File.Delete("sauvegarde.json"); // Suppression après chargement
+                        continuer = JeuConsole.DemanderRejouer();
+                    }
+                    else
+                    {
+                        File.Delete("sauvegarde.json"); // Suppression si l'utilisateur ne veut pas reprendre la partie
                     }
                 }
             }
         }
 
-        private static void LancerJeu(ConsoleKey choix, EtatJeu? sauvegarde)
+        private static void LancerJeu(ConsoleKey choix, EtatJeu? sauvegarde = null, bool estJoueurIA = false)
         {
             IJeuFabrique jeuFabrique = new JeuFabrique();
             var jeuConfig = jeuFabrique.CreerConfigurationJeu(choix);
-            ControleurDeJeu controleur = new ControleurDeJeu(jeuConfig.etatJeu, jeuConfig.comportementJeu, JeuConsole.DemanderJoueurIA());
+            // Passer estJoueurIA et l'état de jeu si présent
+            ControleurDeJeu controleur = new ControleurDeJeu(sauvegarde ?? jeuConfig.etatJeu, jeuConfig.comportementJeu, estJoueurIA);
             controleur.DemarrerJeu();
         }
 
