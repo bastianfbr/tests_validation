@@ -4,12 +4,12 @@ namespace MorpionApp;
 
 public class EtatJeu
 {
-    public char[,] Grille { get; private set; }
+    public char[,] Grille { get; set; }
 
     public EtatJeu(int lignes, int colonnes)
     {
         Grille = new char[lignes, colonnes];
-        InitialiserGrille();
+        // InitialiserGrille();
     }
 
     public void InitialiserGrille()
