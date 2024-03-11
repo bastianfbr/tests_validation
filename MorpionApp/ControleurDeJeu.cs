@@ -89,6 +89,7 @@ namespace MorpionApp
             {
                 Console.Clear();
                 etatJeu.AfficherGrille();
+                // Sauvegarder le jeu ici
                 Console.WriteLine($"C'est au tour du joueur {joueur}. Veuillez choisir une case.");
 
                 var position = joueur.JouerTour(etatJeu, comportementJeu);
