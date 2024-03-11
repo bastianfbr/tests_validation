@@ -1,7 +1,7 @@
 using MorpionApp.Interfaces;
 using MorpionApp.Structures;
 
-namespace MorpionApp;
+namespace MorpionApp.Jeux.Comportement;
 
 public class ComportementMorpion : IComportementJeu
 {

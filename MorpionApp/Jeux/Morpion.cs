@@ -1,4 +1,4 @@
-﻿namespace MorpionApp
+﻿namespace MorpionApp.Jeux
 {
     public class Morpion
     {
