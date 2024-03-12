@@ -1,102 +1,109 @@
 using MorpionApp.Jeux.Communs;
 using MorpionApp.Jeux.Communs.Joueurs;
-using MorpionApp.Jeux.Structures;
 using MorpionApp.Jeux.Morpion;
+using MorpionApp.Jeux.Structures;
 
-namespace MorpionAppTests.Jeux.MorpionTests
+namespace MorpionAppTests
 {
-    public class ComportementMorpionTests
+    public class ComportementMorpionTest
     {
-        [Trait("ComportementMorpion", "EffectuerAction")]
-        [Fact]
-        public void EffectuerAction_AvecCasesVides()
-        {
-            var comportement = new ComportementMorpion();
-            var etatJeu = new EtatJeu(3, 3);
-            var joueur = new JoueurHumain('X');
-            var position = new Position(0, 0);
-            
-            var result = comportement.EffectuerAction(etatJeu, joueur, position);
-            
-            Assert.True(result);
-            Assert.Equal(joueur.Symbol, etatJeu.Grille[position.Row, position.Column]);
-        }
+        private readonly ComportementMorpion comportementMorpion;
+        private readonly EtatJeu etatJeu;
+        private readonly JoueurHumain joueurX;
 
-        [Trait("ComportementMorpion", "EffectuerAction")]
-        [Fact]
-        public void EffectuerAction_AvecCasesOccupees()
+        public ComportementMorpionTest()
         {
-            var comportement = new ComportementMorpion();
-            var etatJeu = new EtatJeu(3, 3);
-            var joueur = new JoueurHumain('X');
-            var position = new Position(0, 0);
-            etatJeu.Grille[position.Row, position.Column] = 'O';
-            
-            var result = comportement.EffectuerAction(etatJeu, joueur, position);
-            
-            Assert.False(result);
-            Assert.NotEqual(joueur.Symbol, etatJeu.Grille[position.Row, position.Column]);
-        }
-
-        [Trait("ComportementMorpion", "VerifVictoire")]
-        [Fact]
-        public void VerifVictoire_AvecVictoire()
-        {
-            var comportement = new ComportementMorpion();
-            var etatJeu = new EtatJeu(3, 3);
-            var joueur = new JoueurHumain('X');
-            for (int i = 0; i < 3; i++)
-            {
-                etatJeu.Grille[i, 0] = joueur.Symbol;
-            }
-            
-            var result = comportement.VerifVictoire(etatJeu, joueur);
-            
-            Assert.True(result);
+            comportementMorpion = new ComportementMorpion();
+            etatJeu = new EtatJeu(3, 3);
+            joueurX = new JoueurHumain('X');
         }
         
-        [Trait("ComportementMorpion", "VerifVictoire")]
-        [Fact]
-        public void VerifVictoire_SansVictoire()
+        private void SetupAndAssertVictoire(char symbol, params (int, int)[] positions)
         {
-            var comportement = new ComportementMorpion();
-            var etatJeu = new EtatJeu(3, 3);
-            var joueur = new JoueurHumain('X');
-            
-            var result = comportement.VerifVictoire(etatJeu, joueur);
-            
-            Assert.False(result);
-        }
-
-        [Trait("ComportementMorpion", "VerifEgalite")]
-        [Fact]
-        public void VerifEgalite_AvecGrillePleine()
-        {
-            var comportement = new ComportementMorpion();
-            var etatJeu = new EtatJeu(3, 3);
-            for (int i = 0; i < 3; i++)
+            etatJeu.InitialiserGrille();
+            foreach (var (row, col) in positions)
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    etatJeu.Grille[i, j] = 'X';
-                }
+                etatJeu.Grille[row, col] = symbol;
             }
-            
-            var result = comportement.VerifEgalite(etatJeu);
-            
-            Assert.True(result);
+            bool result = comportementMorpion.VerifVictoire(etatJeu, new JoueurHumain(symbol));
+            Assert.True(result, $"La victoire de {symbol} était attendue");
         }
 
-        [Trait("ComportementMorpion", "VerifEgalite")]
-        [Fact]
-        public void VerifEgalite_AvecGrilleNonPleine()
+        private void SetupGrillePleineEtAssertEgalite(char[,] grille)
         {
-            var comportement = new ComportementMorpion();
-            var etatJeu = new EtatJeu(3, 3);
-            
-            var result = comportement.VerifEgalite(etatJeu);
-            
-            Assert.False(result);
+            etatJeu.Grille = grille;
+            bool result = comportementMorpion.VerifEgalite(etatJeu);
+            Assert.True(result, "L'égalité était attendue");
+        }
+
+        [Theory]
+        [InlineData(0, 0, true)]
+        [InlineData(1, 1, true)]
+        [InlineData(0, 0, false)]
+        [Trait("ComportementMorpion", "EffectuerAction")]
+        public void EffectuerActionTests(int row, int col, bool resultat)
+        {
+            var position = new Position(row, col);
+            if (!resultat)
+            {
+                etatJeu.Grille[position.Row, position.Column] = joueurX.Symbol;
+            }
+            var result = comportementMorpion.EffectuerAction(etatJeu, joueurX, position);
+            Assert.Equal(resultat, result);
+            if (resultat)
+            {
+                Assert.Equal(joueurX.Symbol, etatJeu.Grille[position.Row, position.Column]);
+            }
+            etatJeu.InitialiserGrille();
+        }
+
+        [Fact]
+        [Trait("ComportementMorpion", "VerifVictoire")]
+        public void VictoireSurColonnes()
+        {
+            SetupAndAssertVictoire(joueurX.Symbol, (0, 0), (1, 0), (2, 0));
+            SetupAndAssertVictoire(joueurX.Symbol, (0, 1), (1, 1), (2, 1));
+            SetupAndAssertVictoire(joueurX.Symbol, (0, 2), (1, 2), (2, 2));
+        }
+
+        [Fact]
+        [Trait("ComportementMorpion", "VerifVictoire")]
+        public void VictoireSurLignes()
+        {
+            SetupAndAssertVictoire(joueurX.Symbol, (0, 0), (0, 1), (0, 2));
+            SetupAndAssertVictoire(joueurX.Symbol, (1, 0), (1, 1), (1, 2));
+            SetupAndAssertVictoire(joueurX.Symbol, (2, 0), (2, 1), (2, 2));
+        }
+
+        [Fact]
+        [Trait("ComportementMorpion", "VerifVictoire")]
+        public void VictoireSurDiagonales()
+        {
+            SetupAndAssertVictoire(joueurX.Symbol, (0, 0), (1, 1), (2, 2));
+            SetupAndAssertVictoire(joueurX.Symbol, (0, 2), (1, 1), (2, 0));
+        }
+
+        [Fact]
+        [Trait("ComportementMorpion", "VerifEgalite")]
+        public void EgaliteTests()
+        {
+            SetupGrillePleineEtAssertEgalite(new char[,] {
+                { 'X', 'O', 'X' },
+                { 'O', 'X', 'O' },
+                { 'X', 'O', 'X' }
+            });
+
+            SetupGrillePleineEtAssertEgalite(new char[,] {
+                { 'O', 'X', 'O' },
+                { 'X', 'O', 'X' },
+                { 'O', 'X', 'O' }
+            });
+
+            SetupGrillePleineEtAssertEgalite(new char[,] {
+                { 'X', 'O', 'X' },
+                { 'O', 'X', 'O' },
+                { 'X', 'X', 'O' }
+            });
         }
     }
 }
