@@ -73,10 +73,14 @@ Supprimer le code mort ou commenté qui n'apporte pas de valeur ajoutée au proj
 # III. 🌟 Développement des fonctionnalités manquantes
 
 ## 🤖 Intégration d'un joueur IA
-Expliquez comment vous souhaitez procéder pour « brancher » un joueur contrôlé par l’ordinateur.
+L'intégration d'un joueur IA pour les jeux de Morpion et de Puissance Quatre est une fonctionnalité attendue par les parties prenantes. Cette IA doit être capable de jouer contre un joueur humain.
+
+Le logiciel a été agrémenté d'une classe `JoueurIA` qui implémente une stratégie de jeu aléatoire pour le moment. Cette stratégie peut être améliorée par la suite.
 
 ## 💾 Système d'historisation et de persistance
-Ainsi qu’un système permettant l’historisation et la persistance.
+Les parties prenantes ont également exprimé le besoin d'un système d'historisation et de persistance des parties. Ce système doit permettre de sauvegarder les parties jouées et de les recharger ultérieurement.
+
+Le logiciel a été enrichi d'une classe `Sauvegarde` qui permet de sauvegarder la partie en cours dans un fichier texte. Cette classe peut être améliorée par la suite.
 
 ### 🔍 Importance du processus de qualité
-Gardez bien en tête que les parties prenantes ont énormément insisté sur la nécessité de processus de qualité robuste. Cette nouvelle fonctionnalité doit donc être testée.
+Le développement de ces fonctionnalités doit être accompagné d'une démarche de qualité rigoureuse, incluant des tests unitaires et une validation approfondie pour garantir la fiabilité et la maintenabilité du logiciel.
