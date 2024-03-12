@@ -59,18 +59,49 @@ public class ComportementMorpion : IComportementJeu
     }
 
 
-    public bool VerifVictoire(EtatJeu etatJeu, IJoueur joueur) =>
-        etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 0] == joueur.Symbol && etatJeu.Grille[2, 0] == joueur.Symbol ||
-        etatJeu.Grille[0, 1] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 1] == joueur.Symbol ||
-        etatJeu.Grille[0, 2] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol ||
-        etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol ||
-        etatJeu.Grille[1, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol ||
-        etatJeu.Grille[2, 0] == joueur.Symbol && etatJeu.Grille[2, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol ||
-        etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol ||
-        etatJeu.Grille[2, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[0, 2] == joueur.Symbol;
-    
-    public bool VerifEgalite(EtatJeu etatJeu) =>
-    etatJeu.Grille[0, 0] != ' ' && etatJeu.Grille[1, 0] != ' ' && etatJeu.Grille[2, 0] != ' ' &&
-    etatJeu.Grille[0, 1] != ' ' && etatJeu.Grille[1, 1] != ' ' && etatJeu.Grille[2, 1] != ' ' &&
-    etatJeu.Grille[0, 2] != ' ' && etatJeu.Grille[1, 2] != ' ' && etatJeu.Grille[2, 2] != ' ';
+    public bool VerifVictoire(EtatJeu etatJeu, IJoueur joueur)
+    {
+        for (int i = 0; i < etatJeu.Grille.GetLength(0); i++)
+        {
+            if (etatJeu.Grille[i, 0] == joueur.Symbol && etatJeu.Grille[i, 1] == joueur.Symbol && etatJeu.Grille[i, 2] == joueur.Symbol)
+            {
+                return true;
+            }
+        }
+        
+        for (int i = 0; i < etatJeu.Grille.GetLength(1); i++)
+        {
+            if (etatJeu.Grille[0, i] == joueur.Symbol && etatJeu.Grille[1, i] == joueur.Symbol && etatJeu.Grille[2, i] == joueur.Symbol)
+            {
+                return true;
+            }
+        }
+        
+        if (etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol)
+        {
+            return true;
+        }
+        
+        if (etatJeu.Grille[0, 2] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 0] == joueur.Symbol)
+        {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public bool VerifEgalite(EtatJeu etatJeu)
+    {
+        for (int i = 0; i < etatJeu.Grille.GetLength(0); i++)
+        {
+            for (int j = 0; j < etatJeu.Grille.GetLength(1); j++)
+            {
+                if (etatJeu.Grille[i, j] == ' ')
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
