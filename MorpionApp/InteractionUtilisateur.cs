@@ -16,18 +16,7 @@ namespace MorpionApp
 
         public ConsoleKey DemanderContinuerOuQuitter()
         {
-            Console.WriteLine("Appuyez sur [N] pour une nouvelle partie, sur [Q] pour quitter.");
-            ConsoleKey key;
-            do
-            {
-                key = Console.ReadKey(true).Key;
-                if (key != ConsoleKey.N && key != ConsoleKey.Q)
-                {
-                    Console.WriteLine("Entrée invalide. Veuillez appuyer sur [N] pour une nouvelle partie ou sur [Q] pour quitter.");
-                }
-            } while (key != ConsoleKey.N && key != ConsoleKey.Q);
-
-            return key;
+            return AssistantConsole.DemanderToucheParmiOptions("Jouer à un autre jeu ? Taper [R] pour rejouer. Taper [Q] pour quitter.", ConsoleKey.R, ConsoleKey.Q);
         }
 
         public void AfficherGrille(EtatJeu etatJeu)
