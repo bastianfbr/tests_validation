@@ -1,7 +1,9 @@
-using MorpionApp.Interfaces;
-using MorpionApp.Jeux.Joueurs;
+using MorpionApp.Console.Interfaces;
+using MorpionApp.Jeux.Interfaces;
+using MorpionApp.Jeux.Communs.Joueurs;
+using MorpionApp.Sauvegarde;
 
-namespace MorpionApp
+namespace MorpionApp.Jeux.Communs
 {
     public class ControleurDeJeu
     {

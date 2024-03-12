@@ -1,4 +1,4 @@
-namespace MorpionApp
+namespace MorpionApp.Console
 {
     public static class AssistantConsole
     {
@@ -7,8 +7,8 @@ namespace MorpionApp
             ConsoleKey key;
             do
             {
-                Console.WriteLine(message);
-                key = Console.ReadKey(true).Key;
+                System.Console.WriteLine(message);
+                key = System.Console.ReadKey(true).Key;
 
                 foreach (var option in optionsValides)
                 {
@@ -18,7 +18,7 @@ namespace MorpionApp
                     }
                 }
 
-                Console.WriteLine("Entrée invalide");
+                System.Console.WriteLine("Entrée invalide");
             } while (true);
         }
     }

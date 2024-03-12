@@ -1,6 +1,7 @@
-using MorpionApp.Structures;
+using MorpionApp.Jeux.Communs;
+using MorpionApp.Jeux.Structures;
 
-namespace MorpionApp.Interfaces;
+namespace MorpionApp.Jeux.Interfaces;
 
 public interface IComportementJeu
 {

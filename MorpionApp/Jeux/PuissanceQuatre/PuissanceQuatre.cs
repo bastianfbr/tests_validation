@@ -1,4 +1,6 @@
-﻿namespace MorpionApp.Jeux
+﻿using MorpionApp.Jeux.Communs;
+
+namespace MorpionApp.Jeux.PuissanceQuatre
 {
     public class PuissanceQuatre
     {

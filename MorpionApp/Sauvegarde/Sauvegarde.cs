@@ -1,6 +1,8 @@
+using MorpionApp.Jeux.Communs;
+
 using System.Text.Json;
 
-namespace MorpionApp
+namespace MorpionApp.Sauvegarde
 {
     public class SauvegardeJeu
     {
@@ -31,8 +33,8 @@ namespace MorpionApp
 
         public static (EtatJeu etatJeu, string typeJeu, bool estJoueurIA) Charger()
         {
-            var json = File.ReadAllText("sauvegarde.json");
-            Console.WriteLine(json);
+            var json = File.ReadAllText("sauvegarde.json"); 
+            System.Console.WriteLine(json);
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true

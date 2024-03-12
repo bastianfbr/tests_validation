@@ -1,17 +1,18 @@
-using MorpionApp.Interfaces;
+using MorpionApp.Console.Interfaces;
+using MorpionApp.Jeux.Communs;
 
-namespace MorpionApp
+namespace MorpionApp.Console
 {
     public class InteractionUtilisateur : IInteractionUtilisateur
     {
         public void AfficherMessage(string message)
         {
-            Console.WriteLine(message);
+            System.Console.WriteLine(message);
         }
 
         public void EffacerConsole()
         {
-            Console.Clear();
+            System.Console.Clear();
         }
 
         public ConsoleKey DemanderContinuerOuQuitter()
@@ -26,12 +27,12 @@ namespace MorpionApp
 
         public void AfficherDemandeDeCoup(char symbolJoueur)
         {
-            Console.WriteLine($"C'est au tour du joueur {symbolJoueur}. Veuillez choisir une case.");
+            System.Console.WriteLine($"C'est au tour du joueur {symbolJoueur}. Veuillez choisir une case.");
         }
 
         public void AfficherCoupInvalide()
         {
-            Console.WriteLine("Coup invalide, veuillez réessayer.");
+            System.Console.WriteLine("Coup invalide, veuillez réessayer.");
         }
     }
 }

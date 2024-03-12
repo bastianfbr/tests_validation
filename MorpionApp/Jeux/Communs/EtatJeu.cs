@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace MorpionApp;
+namespace MorpionApp.Jeux.Communs;
 
 public class EtatJeu
 {
@@ -54,6 +54,6 @@ public class EtatJeu
             }
         }
 
-        Console.Write(sb.ToString());
+        System.Console.Write(sb.ToString());
     }
 }

@@ -1,5 +1,7 @@
-﻿using MorpionApp.Interfaces;
-using MorpionApp.Jeux;
+﻿using MorpionApp.Console;
+using MorpionApp.Interfaces;
+using MorpionApp.Jeux.Communs;
+using MorpionApp.Sauvegarde;
 
 namespace MorpionApp
 {
@@ -49,18 +51,18 @@ namespace MorpionApp
 
         private static bool DemanderReprendrePartie()
         {
-            Console.WriteLine("Une partie de jeu est déjà en cours");
-            Console.WriteLine("Appuyez sur [R] pour la reprendre ou sur [E] pour l'effacer.");
+            System.Console.WriteLine("Une partie de jeu est déjà en cours");
+            System.Console.WriteLine("Appuyez sur [R] pour la reprendre ou sur [E] pour l'effacer.");
             
             bool choixValide = false;
             bool chargerPartie = false;
             while (!choixValide)
             {
-                var key = Console.ReadKey(true).Key;
+                var key = System.Console.ReadKey(true).Key;
                 switch (key)
                 {
                     case ConsoleKey.R:
-                        Console.Clear();
+                        System.Console.Clear();
                         choixValide = true;
                         chargerPartie = true;
                         break;
@@ -69,7 +71,7 @@ namespace MorpionApp
                         chargerPartie = false;
                         break;
                     default:
-                        Console.WriteLine("Entrée invalide. Veuillez appuyer sur [R] pour reprendre la partie sauvegardée ou sur [E] pour l'effacer.");
+                        System.Console.WriteLine("Entrée invalide. Veuillez appuyer sur [R] pour reprendre la partie sauvegardée ou sur [E] pour l'effacer.");
                         break;
                 }
             }

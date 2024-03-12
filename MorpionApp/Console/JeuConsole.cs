@@ -1,4 +1,4 @@
-namespace MorpionApp.Jeux
+namespace MorpionApp.Console
 {
     public class JeuConsole
     {

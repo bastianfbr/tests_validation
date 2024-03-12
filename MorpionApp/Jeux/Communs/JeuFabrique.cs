@@ -1,7 +1,9 @@
 using MorpionApp.Interfaces;
-using MorpionApp.Jeux.Comportement;
+using MorpionApp.Jeux.Interfaces;
+using MorpionApp.Jeux.Morpion;
+using MorpionApp.Jeux.PuissanceQuatre;
 
-namespace MorpionApp
+namespace MorpionApp.Jeux.Communs
 {
     public class JeuFabrique : IJeuFabrique
     {

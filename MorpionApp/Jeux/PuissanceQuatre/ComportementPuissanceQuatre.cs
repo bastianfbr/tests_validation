@@ -1,7 +1,9 @@
 using MorpionApp.Interfaces;
-using MorpionApp.Structures;
+using MorpionApp.Jeux.Interfaces;
+using MorpionApp.Jeux.Communs;
+using MorpionApp.Jeux.Structures;
 
-namespace MorpionApp.Jeux.Comportement;
+namespace MorpionApp.Jeux.PuissanceQuatre;
 
 public class ComportementPuissanceQuatre : IComportementJeu
 {
@@ -25,8 +27,8 @@ public class ComportementPuissanceQuatre : IComportementJeu
 
         while (!choixValide)
         {
-            Console.SetCursorPosition(CalculerPositionCurseur(new Position(etatJeu.Grille.GetLength(0) - 1, col)).cursorLeft, CalculerPositionCurseur(new Position(etatJeu.Grille.GetLength(0) - 1, col)).cursorTop);
-            var key = Console.ReadKey(true).Key;
+            System.Console.SetCursorPosition(CalculerPositionCurseur(new Position(etatJeu.Grille.GetLength(0) - 1, col)).cursorLeft, CalculerPositionCurseur(new Position(etatJeu.Grille.GetLength(0) - 1, col)).cursorTop);
+            var key = System.Console.ReadKey(true).Key;
 
             switch (key)
             {

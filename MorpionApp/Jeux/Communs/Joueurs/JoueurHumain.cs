@@ -1,7 +1,7 @@
-using MorpionApp.Interfaces;
-using MorpionApp.Structures;
+using MorpionApp.Jeux.Interfaces;
+using MorpionApp.Jeux.Structures;
 
-namespace MorpionApp.Jeux.Joueurs
+namespace MorpionApp.Jeux.Communs.Joueurs
 {
     public class JoueurHumain : IJoueur
     {

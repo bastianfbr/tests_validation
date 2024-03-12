@@ -1,7 +1,8 @@
-using MorpionApp.Interfaces;
-using MorpionApp.Structures;
+using MorpionApp.Jeux.Communs;
+using MorpionApp.Jeux.Interfaces;
+using MorpionApp.Jeux.Structures;
 
-namespace MorpionApp.Jeux.Comportement;
+namespace MorpionApp.Jeux.Morpion;
 
 public class ComportementMorpion : IComportementJeu
 {
@@ -27,8 +28,8 @@ public class ComportementMorpion : IComportementJeu
 
         while (!choixValide)
         {
-            Console.SetCursorPosition(CalculerPositionCurseur(new Position(row, col)).cursorLeft, CalculerPositionCurseur(new Position(row, col)).cursorTop);
-            var key = Console.ReadKey(true).Key;
+            System.Console.SetCursorPosition(CalculerPositionCurseur(new Position(row, col)).cursorLeft, CalculerPositionCurseur(new Position(row, col)).cursorTop);
+            var key = System.Console.ReadKey(true).Key;
 
             switch (key)
             {

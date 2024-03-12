@@ -1,4 +1,4 @@
-namespace MorpionApp.Structures;
+namespace MorpionApp.Jeux.Structures;
 
 public readonly struct Position
 {

@@ -1,4 +1,4 @@
-namespace MorpionApp;
+namespace MorpionApp.Sauvegarde;
 
 [Serializable]
 public class SauvegardeDonnees

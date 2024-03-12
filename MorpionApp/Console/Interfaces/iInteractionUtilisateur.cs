@@ -1,4 +1,6 @@
-namespace MorpionApp.Interfaces
+using MorpionApp.Jeux.Communs;
+
+namespace MorpionApp.Console.Interfaces
 {
     public interface IInteractionUtilisateur
     {
