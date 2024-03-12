@@ -43,7 +43,7 @@ namespace MorpionApp
         {
             IJeuFabrique jeuFabrique = new JeuFabrique();
             var jeuConfig = jeuFabrique.CreerConfigurationJeu(choix);
-            ControleurDeJeu controleur = new ControleurDeJeu(sauvegarde ?? jeuConfig.etatJeu, jeuConfig.comportementJeu, estJoueurIA);
+            ControleurDeJeu controleur = new ControleurDeJeu(sauvegarde ?? jeuConfig.etatJeu, jeuConfig.comportementJeu, estJoueurIA, new InteractionUtilisateur());
             controleur.DemarrerJeu();
         }
 

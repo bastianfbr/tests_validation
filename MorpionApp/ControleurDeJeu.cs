@@ -7,17 +7,17 @@ namespace MorpionApp
     {
         private readonly EtatJeu etatJeu;
         private readonly IComportementJeu comportementJeu;
-
         private readonly IJoueur joueur1;
         private readonly IJoueur joueur2;
+        private readonly IInteractionUtilisateur interactionUtilisateur;
 
-        public ControleurDeJeu(EtatJeu etatJeu, IComportementJeu comportementJeu, bool jouerContreIA)
+        public ControleurDeJeu(EtatJeu etatJeu, IComportementJeu comportementJeu, bool jouerContreIA, IInteractionUtilisateur interaction)
         {
             this.etatJeu = etatJeu;
             this.comportementJeu = comportementJeu;
-
             joueur1 = new JoueurHumain('X');
             joueur2 = jouerContreIA ? (IJoueur)new JoueurIA('O') : new JoueurHumain('O');
+            this.interactionUtilisateur = interaction;
         }
 
         public void DemarrerJeu()
@@ -32,9 +32,9 @@ namespace MorpionApp
 
                 while (!partieTerminee && !quitterJeu)
                 {
-                    Console.Clear();
-                    etatJeu.AfficherGrille();
-                    Console.WriteLine($"C'est au tour du joueur {joueurActuel.Symbol}. Veuillez choisir une case.");
+                    interactionUtilisateur.EffacerConsole();
+                    interactionUtilisateur.AfficherGrille(etatJeu);
+                    interactionUtilisateur.AfficherDemandeDeCoup(joueurActuel.Symbol);
 
                     SauvegarderEtatJeu();
                     partieTerminee = EffectuerTour(joueurActuel);
@@ -45,78 +45,66 @@ namespace MorpionApp
                 if (partieTerminee)
                 {
                     File.Delete("sauvegarde.json");
-                    Console.Clear();
-                    etatJeu.AfficherGrille();
+                    interactionUtilisateur.EffacerConsole();
+                    interactionUtilisateur.AfficherGrille(etatJeu);
                     if (comportementJeu.VerifVictoire(etatJeu, (joueurActuel.Symbol == joueur1.Symbol ? joueur2 : joueur1)))
                     {
-                        Console.WriteLine($"Le joueur {(joueurActuel.Symbol == joueur1.Symbol ? joueur2 : joueur1).Symbol} a gagné !");
+                        interactionUtilisateur.AfficherMessage($"Le joueur {(joueurActuel.Symbol == joueur1.Symbol ? joueur2 : joueur1).Symbol} a gagné !");
                     }
                     else if (comportementJeu.VerifEgalite(etatJeu))
                     {
-                        Console.WriteLine("La partie se termine par une égalité !");
+                        interactionUtilisateur.AfficherMessage("La partie se termine par une égalité !");
                     }
 
-                    Console.WriteLine("Appuyez sur [N] pour une nouvelle partie, sur [Q] pour quitter.");
-
-                    bool choixValide = false;
-                    while (!choixValide)
+                    var choix = interactionUtilisateur.DemanderContinuerOuQuitter();
+                    if (choix == ConsoleKey.Q)
                     {
-                        var key = Console.ReadKey(true).Key;
-                        switch (key)
-                        {
-                            case ConsoleKey.N:
-                                Console.Clear();
-                                choixValide = true;
-                                break;
-                            case ConsoleKey.Q:
-                                quitterJeu = true;
-                                choixValide = true;
-                                break;
-                            default:
-                                Console.WriteLine("Entrée invalide. Veuillez appuyer sur [N] pour une nouvelle partie ou sur [Q] pour quitter.");
-                                break;
-                        }
+                        quitterJeu = true;
                     }
                 }
-
-
             }
         }
 
         private bool EffectuerTour(IJoueur joueur)
         {
             bool coupValide = false;
+            bool partieTerminee = false;
 
             while (!coupValide)
             {
-                Console.Clear();
-                etatJeu.AfficherGrille();
-                Console.WriteLine($"C'est au tour du joueur {joueur.Symbol}. Veuillez choisir une case.");
-
+                interactionUtilisateur.EffacerConsole();
+                interactionUtilisateur.AfficherGrille(etatJeu);
+                interactionUtilisateur.AfficherDemandeDeCoup(joueur.Symbol);
+                
                 var position = joueur.JouerTour(etatJeu, comportementJeu);
+
                 coupValide = comportementJeu.EffectuerAction(etatJeu, joueur, position);
                 if (!coupValide)
                 {
-                    Console.WriteLine("Coup invalide, veuillez réessayer.");
-                    Console.ReadKey(true);
+                    interactionUtilisateur.AfficherCoupInvalide();
                 }
                 else
                 {
                     if (comportementJeu.VerifVictoire(etatJeu, joueur))
                     {
-                        Console.WriteLine($"Le joueur {joueur} a gagné !");
-                        return true;
+                        interactionUtilisateur.EffacerConsole();
+                        interactionUtilisateur.AfficherGrille(etatJeu);
+                        interactionUtilisateur.AfficherMessage($"Le joueur {joueur.Symbol} a gagné !");
+                        partieTerminee = true;
                     }
                     else if (comportementJeu.VerifEgalite(etatJeu))
                     {
-                        Console.WriteLine("La partie se termine par une égalité !");
-                        return true;
+                        interactionUtilisateur.EffacerConsole();
+                        interactionUtilisateur.AfficherGrille(etatJeu);
+                        interactionUtilisateur.AfficherMessage("La partie se termine par une égalité !");
+                        partieTerminee = true;
                     }
                 }
             }
 
-            return false;
+            return partieTerminee;
         }
+
         
         private void SauvegarderEtatJeu()
         {
