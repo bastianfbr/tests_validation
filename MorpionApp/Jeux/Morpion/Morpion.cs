@@ -4,7 +4,7 @@ namespace MorpionApp.Jeux.Morpion
 {
     public class Morpion
     {
-        private readonly EtatJeu etatJeu;
+        public EtatJeu etatJeu { get; set; }
 
         public Morpion()
         {
