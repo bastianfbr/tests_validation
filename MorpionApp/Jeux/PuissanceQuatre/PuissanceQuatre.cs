@@ -4,7 +4,7 @@ namespace MorpionApp.Jeux.PuissanceQuatre
 {
     public class PuissanceQuatre
     {
-        private readonly EtatJeu etatJeu;
+        public readonly EtatJeu etatJeu;
 
         public PuissanceQuatre()
         {
