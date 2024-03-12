@@ -1,7 +1,6 @@
-using MorpionApp.Jeux.Communs;
 using MorpionApp.Jeux.Interfaces;
 
-namespace MorpionApp.Interfaces
+namespace MorpionApp.Jeux.Communs.Interfaces
 {
     public interface IJeuFabrique
     {

@@ -1,4 +1,4 @@
-using MorpionApp.Interfaces;
+using MorpionApp.Jeux.Communs.Interfaces;
 using MorpionApp.Jeux.Interfaces;
 using MorpionApp.Jeux.Morpion;
 using MorpionApp.Jeux.PuissanceQuatre;

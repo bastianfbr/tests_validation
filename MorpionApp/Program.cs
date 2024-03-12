@@ -1,5 +1,5 @@
 ﻿using MorpionApp.Console;
-using MorpionApp.Interfaces;
+using MorpionApp.Jeux.Communs.Interfaces;
 using MorpionApp.Jeux.Communs;
 using MorpionApp.Sauvegarde;
 

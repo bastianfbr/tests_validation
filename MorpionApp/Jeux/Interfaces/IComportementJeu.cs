@@ -1,4 +1,5 @@
 using MorpionApp.Jeux.Communs;
+using MorpionApp.Jeux.Communs.Interfaces;
 using MorpionApp.Jeux.Structures;
 
 namespace MorpionApp.Jeux.Interfaces;
