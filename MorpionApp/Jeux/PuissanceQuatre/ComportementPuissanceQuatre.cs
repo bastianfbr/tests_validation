@@ -59,46 +59,48 @@ public class ComportementPuissanceQuatre : IComportementJeu
         return (position.Column * 6 + 1, position.Row * 2);
     }
 
-    public bool VerifVictoire(EtatJeu etatJeu, IJoueur joueur) =>
-        etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 0] == joueur.Symbol && etatJeu.Grille[2, 0] == joueur.Symbol && etatJeu.Grille[3, 0] == joueur.Symbol ||
-        etatJeu.Grille[0, 1] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 1] == joueur.Symbol && etatJeu.Grille[3, 1] == joueur.Symbol ||
-        etatJeu.Grille[0, 2] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol && etatJeu.Grille[3, 2] == joueur.Symbol ||
-        etatJeu.Grille[0, 3] == joueur.Symbol && etatJeu.Grille[1, 3] == joueur.Symbol && etatJeu.Grille[2, 3] == joueur.Symbol && etatJeu.Grille[3, 3] == joueur.Symbol ||
-        etatJeu.Grille[0, 4] == joueur.Symbol && etatJeu.Grille[1, 4] == joueur.Symbol && etatJeu.Grille[2, 4] == joueur.Symbol && etatJeu.Grille[3, 4] == joueur.Symbol ||
-        etatJeu.Grille[0, 5] == joueur.Symbol && etatJeu.Grille[1, 5] == joueur.Symbol && etatJeu.Grille[2, 5] == joueur.Symbol && etatJeu.Grille[3, 5] == joueur.Symbol ||
-        etatJeu.Grille[0, 6] == joueur.Symbol && etatJeu.Grille[1, 6] == joueur.Symbol && etatJeu.Grille[2, 6] == joueur.Symbol && etatJeu.Grille[3, 6] == joueur.Symbol ||
-        etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[0, 1] == joueur.Symbol && etatJeu.Grille[0, 2] == joueur.Symbol && etatJeu.Grille[0, 3] == joueur.Symbol ||
-        etatJeu.Grille[0, 1] == joueur.Symbol && etatJeu.Grille[0, 2] == joueur.Symbol && etatJeu.Grille[0, 3] == joueur.Symbol && etatJeu.Grille[0, 4] == joueur.Symbol ||
-        etatJeu.Grille[0, 2] == joueur.Symbol && etatJeu.Grille[0, 3] == joueur.Symbol && etatJeu.Grille[0, 3] == joueur.Symbol && etatJeu.Grille[0, 5] == joueur.Symbol ||
-        etatJeu.Grille[0, 3] == joueur.Symbol && etatJeu.Grille[0, 4] == joueur.Symbol && etatJeu.Grille[0, 5] == joueur.Symbol && etatJeu.Grille[0, 6] == joueur.Symbol ||
-        etatJeu.Grille[1, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol && etatJeu.Grille[1, 3] == joueur.Symbol ||
-        etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol && etatJeu.Grille[1, 3] == joueur.Symbol && etatJeu.Grille[1, 4] == joueur.Symbol ||
-        etatJeu.Grille[1, 2] == joueur.Symbol && etatJeu.Grille[1, 3] == joueur.Symbol && etatJeu.Grille[1, 4] == joueur.Symbol && etatJeu.Grille[1, 5] == joueur.Symbol ||
-        etatJeu.Grille[1, 4] == joueur.Symbol && etatJeu.Grille[1, 4] == joueur.Symbol && etatJeu.Grille[1, 5] == joueur.Symbol && etatJeu.Grille[1, 6] == joueur.Symbol ||
-        etatJeu.Grille[2, 0] == joueur.Symbol && etatJeu.Grille[2, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol && etatJeu.Grille[2, 3] == joueur.Symbol ||
-        etatJeu.Grille[2, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol && etatJeu.Grille[2, 3] == joueur.Symbol && etatJeu.Grille[2, 4] == joueur.Symbol ||
-        etatJeu.Grille[2, 2] == joueur.Symbol && etatJeu.Grille[2, 3] == joueur.Symbol && etatJeu.Grille[2, 3] == joueur.Symbol && etatJeu.Grille[2, 5] == joueur.Symbol ||
-        etatJeu.Grille[2, 3] == joueur.Symbol && etatJeu.Grille[2, 4] == joueur.Symbol && etatJeu.Grille[2, 5] == joueur.Symbol && etatJeu.Grille[2, 6] == joueur.Symbol ||
-        etatJeu.Grille[3, 0] == joueur.Symbol && etatJeu.Grille[3, 1] == joueur.Symbol && etatJeu.Grille[3, 2] == joueur.Symbol && etatJeu.Grille[3, 3] == joueur.Symbol ||
-        etatJeu.Grille[3, 1] == joueur.Symbol && etatJeu.Grille[3, 2] == joueur.Symbol && etatJeu.Grille[3, 3] == joueur.Symbol && etatJeu.Grille[3, 4] == joueur.Symbol ||
-        etatJeu.Grille[3, 2] == joueur.Symbol && etatJeu.Grille[3, 3] == joueur.Symbol && etatJeu.Grille[3, 4] == joueur.Symbol && etatJeu.Grille[3, 5] == joueur.Symbol ||
-        etatJeu.Grille[3, 3] == joueur.Symbol && etatJeu.Grille[3, 4] == joueur.Symbol && etatJeu.Grille[3, 5] == joueur.Symbol && etatJeu.Grille[3, 6] == joueur.Symbol ||
-        etatJeu.Grille[0, 0] == joueur.Symbol && etatJeu.Grille[1, 1] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol && etatJeu.Grille[3, 3] == joueur.Symbol ||
-        etatJeu.Grille[0, 1] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol && etatJeu.Grille[2, 3] == joueur.Symbol && etatJeu.Grille[3, 4] == joueur.Symbol ||
-        etatJeu.Grille[0, 2] == joueur.Symbol && etatJeu.Grille[1, 3] == joueur.Symbol && etatJeu.Grille[2, 4] == joueur.Symbol && etatJeu.Grille[3, 5] == joueur.Symbol ||
-        etatJeu.Grille[0, 3] == joueur.Symbol && etatJeu.Grille[1, 4] == joueur.Symbol && etatJeu.Grille[2, 5] == joueur.Symbol && etatJeu.Grille[3, 6] == joueur.Symbol ||
-        etatJeu.Grille[0, 3] == joueur.Symbol && etatJeu.Grille[1, 2] == joueur.Symbol && etatJeu.Grille[2, 1] == joueur.Symbol && etatJeu.Grille[3, 0] == joueur.Symbol ||
-        etatJeu.Grille[0, 4] == joueur.Symbol && etatJeu.Grille[1, 4] == joueur.Symbol && etatJeu.Grille[2, 2] == joueur.Symbol && etatJeu.Grille[3, 1] == joueur.Symbol ||
-        etatJeu.Grille[0, 5] == joueur.Symbol && etatJeu.Grille[1, 3] == joueur.Symbol && etatJeu.Grille[2, 3] == joueur.Symbol && etatJeu.Grille[3, 2] == joueur.Symbol ||
-        etatJeu.Grille[0, 6] == joueur.Symbol && etatJeu.Grille[1, 5] == joueur.Symbol && etatJeu.Grille[2, 4] == joueur.Symbol && etatJeu.Grille[3, 3] == joueur.Symbol;
-    
-    public bool VerifEgalite(EtatJeu etatJeu) =>
-        etatJeu.Grille[0, 0] != ' ' && etatJeu.Grille[0, 1] != ' ' && etatJeu.Grille[0, 2] != ' ' && etatJeu.Grille[0, 3] != ' ' &&
-        etatJeu.Grille[0, 4] != ' ' && etatJeu.Grille[0, 5] != ' ' && etatJeu.Grille[0, 6] != ' ' &&
-        etatJeu.Grille[1, 0] != ' ' && etatJeu.Grille[1, 1] != ' ' && etatJeu.Grille[1, 2] != ' ' && etatJeu.Grille[1, 3] != ' ' &&
-        etatJeu.Grille[1, 4] != ' ' && etatJeu.Grille[1, 5] != ' ' && etatJeu.Grille[1, 6] != ' ' &&
-        etatJeu.Grille[2, 0] != ' ' && etatJeu.Grille[2, 1] != ' ' && etatJeu.Grille[1, 2] != ' ' && etatJeu.Grille[2, 3] != ' ' &&
-        etatJeu.Grille[2, 4] != ' ' && etatJeu.Grille[2, 5] != ' ' && etatJeu.Grille[2, 6] != ' ' &&
-        etatJeu.Grille[3, 0] != ' ' && etatJeu.Grille[3, 1] != ' ' && etatJeu.Grille[3, 2] != ' ' && etatJeu.Grille[3, 3] != ' ' &&
-        etatJeu.Grille[3, 4] != ' ' && etatJeu.Grille[3, 5] != ' ' && etatJeu.Grille[3, 5] != ' ';
+    public bool VerifVictoire(EtatJeu etatJeu, IJoueur joueur)
+    {
+        for (int i = 0; i < etatJeu.Grille.GetLength(0); i++)
+        {
+            for (int j = 0; j < etatJeu.Grille.GetLength(1); j++)
+            {
+                if (etatJeu.Grille[i, j] == joueur.Symbol)
+                {
+                    if (j + 3 < etatJeu.Grille.GetLength(1) && etatJeu.Grille[i, j + 1] == joueur.Symbol && etatJeu.Grille[i, j + 2] == joueur.Symbol && etatJeu.Grille[i, j + 3] == joueur.Symbol)
+                    {
+                        return true;
+                    }
+                    if (i + 3 < etatJeu.Grille.GetLength(0) && etatJeu.Grille[i + 1, j] == joueur.Symbol && etatJeu.Grille[i + 2, j] == joueur.Symbol && etatJeu.Grille[i + 3, j] == joueur.Symbol)
+                    {
+                        return true;
+                    }
+                    if (i + 3 < etatJeu.Grille.GetLength(0) && j + 3 < etatJeu.Grille.GetLength(1) && etatJeu.Grille[i + 1, j + 1] == joueur.Symbol && etatJeu.Grille[i + 2, j + 2] == joueur.Symbol && etatJeu.Grille[i + 3, j + 3] == joueur.Symbol)
+                    {
+                        return true;
+                    }
+                    if (i - 3 >= 0 && j + 3 < etatJeu.Grille.GetLength(1) && etatJeu.Grille[i - 1, j + 1] == joueur.Symbol && etatJeu.Grille[i - 2, j + 2] == joueur.Symbol && etatJeu.Grille[i - 3, j + 3] == joueur.Symbol)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool VerifEgalite(EtatJeu etatJeu)
+    {
+        for (int i = 0; i < etatJeu.Grille.GetLength(0); i++)
+        {
+            for (int j = 0; j < etatJeu.Grille.GetLength(1); j++)
+            {
+                if (etatJeu.Grille[i, j] == ' ')
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
