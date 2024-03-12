@@ -24,8 +24,4 @@
       <ProjectReference Include="..\MorpionApp\MorpionApp.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Jeux\Communs\" />
-    </ItemGroup>
-
 </Project>
