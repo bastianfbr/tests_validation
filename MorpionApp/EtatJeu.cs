@@ -9,7 +9,6 @@ public class EtatJeu
     public EtatJeu(int lignes, int colonnes)
     {
         Grille = new char[lignes, colonnes];
-        // InitialiserGrille();
     }
 
     public void InitialiserGrille()
@@ -47,7 +46,7 @@ public class EtatJeu
             {
                 separator += "+-----";
             }
-            separator += "+----"; // Use this line consistently
+            separator += "+----";
 
             if (i < Grille.GetLength(0) - 1)
             {
