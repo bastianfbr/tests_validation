@@ -16,8 +16,8 @@ namespace MorpionApp.Console
         public static bool DemanderRejouer()
         {
             
-            ConsoleKey key = AssistantConsole.DemanderToucheParmiOptions("Jouer à un autre jeu ? Taper [R] pour rejouer. Taper [Q] pour quitter.", ConsoleKey.R, ConsoleKey.Q);
-            return key == ConsoleKey.R;
+            ConsoleKey key = AssistantConsole.DemanderToucheParmiOptions("Voulez-vous encore jouer à un jeu ? Taper [O] pour oui et [N] pour non.", ConsoleKey.O, ConsoleKey.N);
+            return key == ConsoleKey.O;
         }
     }
 }

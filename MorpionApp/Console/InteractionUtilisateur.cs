@@ -17,7 +17,7 @@ namespace MorpionApp.Console
 
         public ConsoleKey DemanderContinuerOuQuitter()
         {
-            return AssistantConsole.DemanderToucheParmiOptions("Jouer à un autre jeu ? Taper [R] pour rejouer. Taper [Q] pour quitter.", ConsoleKey.R, ConsoleKey.Q);
+            return AssistantConsole.DemanderToucheParmiOptions("Rejouer une partie ? Taper [R] pour rejouer. Taper [Q] pour quitter.", ConsoleKey.R, ConsoleKey.Q);
         }
 
         public void AfficherGrille(EtatJeu etatJeu)
