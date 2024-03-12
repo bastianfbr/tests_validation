@@ -1,6 +1,6 @@
 namespace MorpionApp.Console
 {
-    public class JeuConsole
+    public static class JeuConsole
     {
         public static ConsoleKey ChoisirJeu()
         {
@@ -15,7 +15,7 @@ namespace MorpionApp.Console
 
         public static bool DemanderRejouer()
         {
-            
+
             ConsoleKey key = AssistantConsole.DemanderToucheParmiOptions("Voulez-vous encore jouer à un jeu ? Taper [O] pour oui et [N] pour non.", ConsoleKey.O, ConsoleKey.N);
             return key == ConsoleKey.O;
         }
