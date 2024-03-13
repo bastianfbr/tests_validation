@@ -2,72 +2,57 @@ namespace TennisTest;
 
 public class Tennis
 {
+    public const int ScorePourGagner = 4;
+    public const int DiffMinPourGagner = 2;
+    public static readonly string[] Scores = { "0", "15", "30", "40" };
+    
     public string Score(int echangeJ1, int echangeJ2)
     {
-        if (echangeJ1 < 0 || echangeJ2 < 0)
+        if (!ScoreValide(echangeJ1, echangeJ2))
         {
             return "Score non valide";
         }
         
-        if (echangeJ1 == echangeJ2)
+        if (ScoreEgalite(echangeJ1, echangeJ2))
         {
             return "Egalite";
         }
         
-        if (echangeJ1 >= 4 && echangeJ1 - echangeJ2 == 1)
+        if (ScoreAvantage(echangeJ1, echangeJ2))
         {
-            return "Avantage J1";
+            return $"Avantage {(echangeJ1 > echangeJ2 ? "J1" : "J2")}";
         }
         
-        if (echangeJ2 >= 4 && echangeJ2 - echangeJ1 == 1)
+        if (ScoreVictoire(echangeJ1, echangeJ2))
         {
-            return "Avantage J2";
+            return $"Victoire {(echangeJ1 > echangeJ2 ? "J1" : "J2")}";
         }
         
-        if (echangeJ1 >= 4 && echangeJ1 - echangeJ2 >= 2)
-        {
-            return "Victoire J1";
-        }
-        
-        if (echangeJ2 >= 4 && echangeJ2 - echangeJ1 >= 2)
-        {
-            return "Victoire J2";
-        }
-        
-        return CalculeScore(echangeJ1, echangeJ2);
+        return $"{CalculeScore(echangeJ1)}-{CalculeScore(echangeJ2)}";
     }
     
-    public string CalculeScore(int echangeJ1, int echangeJ2)
+    public string CalculeScore(int echange)
     {
-        var scoreJ1 = 0;
-        var scoreJ2 = 0;
-        
-        if (echangeJ1 == 1)
-        {
-            scoreJ1 = 15;
-        }
-        else if (echangeJ1 == 2)
-        {
-            scoreJ1 = 30;
-        }
-        else if (echangeJ1 >= 3)
-        {
-            scoreJ1 = 40;
-        }
-        
-        if (echangeJ2 == 1)
-        {
-            scoreJ2 = 15;
-        }
-        else if (echangeJ2 == 2)
-        {
-            scoreJ2 = 30;
-        }
-        else if (echangeJ2 >= 3)
-        {
-            scoreJ2 = 40;
-        }
-        
-        return $"{scoreJ1}-{scoreJ2}";
+        return echange < Scores.Length ? Scores[echange] : "40";
+    }
+    
+    public bool ScoreValide(int echangeJ1, int echangeJ2)
+    {
+        return echangeJ1 >= 0 && echangeJ2 >= 0;
+    }
+    
+    public bool ScoreEgalite(int echangeJ1, int echangeJ2)
+    {
+        return echangeJ1 == echangeJ2;
+    }
+    
+    public bool ScoreAvantage(int echangeJ1, int echangeJ2)
+    {
+        return echangeJ1 >= 4 && echangeJ1 - echangeJ2 == 1 || echangeJ2 >= 4 && echangeJ2 - echangeJ1 == 1;
+    }
+    
+    public bool ScoreVictoire(int echangeJ1, int echangeJ2)
+    {
+        return echangeJ1 >= ScorePourGagner && echangeJ1 - echangeJ2 >= DiffMinPourGagner || echangeJ2 >= ScorePourGagner && echangeJ2 - echangeJ1 >= DiffMinPourGagner;
     }
 }

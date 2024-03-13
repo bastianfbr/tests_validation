@@ -11,9 +11,10 @@ public class TennisScoreEchangeTest
         var echangeJ2 = 1;
         var scoreAttendu = "15-15";
         
-        var score = tennis.CalculeScore(echangeJ1, echangeJ2);
+        var score1 = tennis.CalculeScore(echangeJ1);
+        var score2 = tennis.CalculeScore(echangeJ2);
         
-        Assert.Equal(scoreAttendu, score);
+        Assert.Equal(scoreAttendu, $"{score1}-{score2}");
     }
     
     [Fact]
@@ -25,9 +26,10 @@ public class TennisScoreEchangeTest
         var echangeJ2 = 1;
         var scoreAttendu = "30-15";
         
-        var score = tennis.CalculeScore(echangeJ1, echangeJ2);
+        var score1 = tennis.CalculeScore(echangeJ1);
+        var score2 = tennis.CalculeScore(echangeJ2);
         
-        Assert.Equal(scoreAttendu, score);
+        Assert.Equal(scoreAttendu, $"{score1}-{score2}");
     }
     
     [Fact]
@@ -39,8 +41,9 @@ public class TennisScoreEchangeTest
         var echangeJ2 = 30;
         var scoreAttendu = "40-40";
         
-        var score = tennis.CalculeScore(echangeJ1, echangeJ2);
+        var score1 = tennis.CalculeScore(echangeJ1);
+        var score2 = tennis.CalculeScore(echangeJ2);
         
-        Assert.Equal(scoreAttendu, score);
+        Assert.Equal(scoreAttendu, $"{score1}-{score2}");
     }
 }
