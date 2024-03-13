@@ -13,7 +13,18 @@ public class Tennis
         {
             return "Egalite";
         }
-        return "Pas Egalite";
+        
+        if (echangeJ1 >= 4 && echangeJ1 - echangeJ2 == 1)
+        {
+            return "Avantage J1";
+        }
+        
+        if (echangeJ2 >= 4 && echangeJ2 - echangeJ1 == 1)
+        {
+            return "Avantage J2";
+        }
+        
+        return CalculeScore(echangeJ1, echangeJ2);
     }
     
     public string CalculeScore(int echangeJ1, int echangeJ2)
