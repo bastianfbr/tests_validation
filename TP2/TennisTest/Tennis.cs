@@ -24,6 +24,16 @@ public class Tennis
             return "Avantage J2";
         }
         
+        if (echangeJ1 >= 4 && echangeJ1 - echangeJ2 >= 2)
+        {
+            return "Victoire J1";
+        }
+        
+        if (echangeJ2 >= 4 && echangeJ2 - echangeJ1 >= 2)
+        {
+            return "Victoire J2";
+        }
+        
         return CalculeScore(echangeJ1, echangeJ2);
     }
     
