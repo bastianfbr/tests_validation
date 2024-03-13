@@ -15,4 +15,38 @@ public class Tennis
         }
         return "Pas Egalite";
     }
+    
+    public string CalculeScore(int echangeJ1, int echangeJ2)
+    {
+        var scoreJ1 = 0;
+        var scoreJ2 = 0;
+        
+        if (echangeJ1 == 1)
+        {
+            scoreJ1 = 15;
+        }
+        else if (echangeJ1 == 2)
+        {
+            scoreJ1 = 30;
+        }
+        else if (echangeJ1 >= 3)
+        {
+            scoreJ1 = 40;
+        }
+        
+        if (echangeJ2 == 1)
+        {
+            scoreJ2 = 15;
+        }
+        else if (echangeJ2 == 2)
+        {
+            scoreJ2 = 30;
+        }
+        else if (echangeJ2 >= 3)
+        {
+            scoreJ2 = 40;
+        }
+        
+        return $"{scoreJ1}-{scoreJ2}";
+    }
 }
