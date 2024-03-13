@@ -1,6 +1,6 @@
 namespace TennisTest;
 
-public class TennisScoreValidite
+public class TennisScoreValiditeTest
 {
     [Fact]
     [Trait("Tennis", "ScoreValide")]

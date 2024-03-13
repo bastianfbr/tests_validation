@@ -1,6 +1,6 @@
 namespace TennisTest;
 
-public class TennisScoreEchange
+public class TennisScoreEchangeTest
 {
     [Fact]
     [Trait("Tennis", "RetourneBonScore")]
