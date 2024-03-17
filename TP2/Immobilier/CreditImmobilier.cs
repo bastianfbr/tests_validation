@@ -8,6 +8,11 @@ public class CreditImmobilier
 
     public CreditImmobilier(double montant, double tauxAnnuel, int dureeMois)
     {
+        if (montant <= 0)
+        {
+            throw new ArgumentException("Le montant emprunté doit être positif");
+        }
+        
         this.montant = montant;
         this.tauxAnnuel = tauxAnnuel;
         this.dureeMois = dureeMois;
