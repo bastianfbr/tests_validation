@@ -45,4 +45,18 @@ public class CalculCredit
         
         Assert.Equal(953,67, Math.Round(capitalRembourse, 2));
     }
+    
+    [Fact]
+    [Trait("Categorie", "Calculs")]
+    public void VerifierCapitalRestantDuApresPremiereMensualite()
+    {
+        var montant = 200000;
+        var tauxAnnuel = 2;
+        var dureeMois = 180;
+        var credit = new CreditImmobilier(montant, tauxAnnuel, dureeMois);
+    
+        var capitalRestant = credit.CapitalRestantDuApresMensualite(1);
+        
+        Assert.Equal(199046.32, Math.Round(capitalRestant, 2));
+    }
 }
