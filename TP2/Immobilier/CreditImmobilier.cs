@@ -13,6 +13,11 @@ public class CreditImmobilier
             throw new ArgumentException("Le montant emprunté doit être positif");
         }
         
+        if (tauxAnnuel <= 0)
+        {
+            throw new ArgumentException("Le taux annuel doit être positif");
+        }
+        
         this.montant = montant;
         this.tauxAnnuel = tauxAnnuel;
         this.dureeMois = dureeMois;
