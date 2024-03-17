@@ -8,11 +8,6 @@ public class CreditImmobilier
 
     public CreditImmobilier(double montant, double tauxAnnuel, int dureeMois)
     {
-        if (montant <= 0)
-        {
-            throw new ArgumentException("Le montant emprunté doit être positif");
-        }
-        
         if (montant < 50000)
         {
             throw new ArgumentException("Le montant emprunté doit être au moins 50 000");
