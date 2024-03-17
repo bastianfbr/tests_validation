@@ -50,4 +50,17 @@ public class CreditImmobilier
 
         return montant - capitalRestantDu;
     }
+    
+    public double CapitalRestantDuApresMensualite(int mensualite)
+    {
+        var capitalRestantDu = montant;
+        for (var i = 0; i < mensualite; i++)
+        {
+            var interet = capitalRestantDu * tauxAnnuel / 100 / 12;
+            var amortissement = this.mensualite() - interet;
+            capitalRestantDu -= amortissement;
+        }
+
+        return capitalRestantDu;
+    }
 }
