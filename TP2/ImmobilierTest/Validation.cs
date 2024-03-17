@@ -19,6 +19,19 @@ public class Validation
     
     [Fact]
     [Trait("Categorie", "Validation")]
+    public void MontantAuMoins50000()
+    {
+        var montant = 20000;
+        var tauxAnnuel = 2;
+        var dureeMois = 180;
+    
+        var exception = Assert.Throws<ArgumentException>(() => new CreditImmobilier(montant, tauxAnnuel, dureeMois));
+    
+        Assert.Contains("Le montant emprunté doit être au moins 50 000", exception.Message);
+    }
+    
+    [Fact]
+    [Trait("Categorie", "Validation")]
     public void DureeMoisEntre9et25ans()
     {
         var montant = 200000;
