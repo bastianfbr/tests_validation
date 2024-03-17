@@ -37,4 +37,17 @@ public class CreditImmobilier
     {
         return montant * (tauxAnnuel / 100 / 12) / (1 - Math.Pow(1 + tauxAnnuel / 100 / 12, -dureeMois));
     }
+
+    public double capitalRembourseApresMensualite(int mensualite)
+    {
+        var capitalRestantDu = montant;
+        for (var i = 0; i < mensualite; i++)
+        {
+            var interet = capitalRestantDu * tauxAnnuel / 100 / 12;
+            var amortissement = this.mensualite() - interet;
+            capitalRestantDu -= amortissement;
+        }
+
+        return montant - capitalRestantDu;
+    }
 }
