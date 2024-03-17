@@ -18,6 +18,11 @@ public class CreditImmobilier
             throw new ArgumentException("Le taux annuel doit être positif");
         }
         
+        if (dureeMois < 108 || dureeMois > 300)
+        {
+            throw new ArgumentException("La durée du crédit doit être entre 9 et 25 ans");
+        }
+        
         this.montant = montant;
         this.tauxAnnuel = tauxAnnuel;
         this.dureeMois = dureeMois;
