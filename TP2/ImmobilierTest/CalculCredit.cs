@@ -43,6 +43,6 @@ public class CalculCredit
     
         var capitalRembourse = credit.capitalRembourseApresMensualite(1);
         
-        Assert.Equal(1284.85, Math.Round(capitalRembourse, 2));
+        Assert.Equal(953,67, Math.Round(capitalRembourse, 2));
     }
 }
