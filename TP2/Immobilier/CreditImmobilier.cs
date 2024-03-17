@@ -13,6 +13,11 @@ public class CreditImmobilier
         this.dureeMois = dureeMois;
     }
     
+    public double coutTotal()
+    {
+        return mensualite() * dureeMois;
+    }
+    
     public double mensualite()
     {
         return montant * (tauxAnnuel / 100 / 12) / (1 - Math.Pow(1 + tauxAnnuel / 100 / 12, -dureeMois));
