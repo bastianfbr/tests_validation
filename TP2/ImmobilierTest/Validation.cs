@@ -12,7 +12,7 @@ public class Validation
         var tauxAnnuel = 2;
         var dureeMois = 180;
     
-        var exception = Assert.Throws<ArgumentException>(() => new CreditImmobilier(montant, tauxAnnuel, dureeMois));
+        var exception = Assert.Throws<ExceptionPersonnalisee>(() => new CreditImmobilier(montant, tauxAnnuel, dureeMois));
     
         Assert.Contains("Le montant emprunté doit être au moins 50 000", exception.Message);
     }
@@ -25,7 +25,7 @@ public class Validation
         var tauxAnnuel = 2;
         var dureeMois = 301;
     
-        var exception = Assert.Throws<ArgumentException>(() => new CreditImmobilier(montant, tauxAnnuel, dureeMois));
+        var exception = Assert.Throws<ExceptionPersonnalisee>(() => new CreditImmobilier(montant, tauxAnnuel, dureeMois));
     
         Assert.Contains("La durée du crédit doit être entre 9 et 25 ans", exception.Message);
     }
@@ -38,7 +38,7 @@ public class Validation
         var tauxAnnuel = -2;
         var dureeMois = 180;
     
-        var exception = Assert.Throws<ArgumentException>(() => new CreditImmobilier(montant, tauxAnnuel, dureeMois));
+        var exception = Assert.Throws<ExceptionPersonnalisee>(() => new CreditImmobilier(montant, tauxAnnuel, dureeMois));
     
         Assert.Contains("Le taux annuel doit être positif", exception.Message);
     }
