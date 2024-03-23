@@ -16,7 +16,7 @@ public class CSV
         var csvBuilder = new StringBuilder();
         csvBuilder.AppendLine("Mensualité;Capital remboursé;Capital restant dû");
 
-        for (var i = 1; i <= 10; i++)
+        for (var i = 1; i <= credit.obtenirDureeMois(); i++)
         {
             double capitalRembourse = credit.capitalRembourseApresMensualite(i);
             double capitalRestantDu = credit.CapitalRestantDuApresMensualite(i);
