@@ -34,4 +34,53 @@ public class CreationCSV
         
         Assert.Contains(csvAttendu.ToString(), resultatCsv);
     }
+    
+    [Fact]
+    [Trait("Categorie", "CreationCSV")]
+    public void VerifierCreationCSVDernieresLignes()
+    {
+        var montant = 200000;
+        var tauxAnnuel = 2;
+        var dureeMois = 180;
+
+        var credit = new CreditImmobilier(montant, tauxAnnuel, dureeMois);
+
+        var csv = new CSV(credit);
+
+        var csvAttendu = new StringBuilder();
+        csvAttendu.AppendLine("171;188512,78;11487,22");
+        csvAttendu.AppendLine("172;189780,65;10219,35");
+        csvAttendu.AppendLine("173;191050,64;8949,36");
+        csvAttendu.AppendLine("174;192322,74;7677,26");
+        csvAttendu.AppendLine("175;193596,96;6403,04");
+        csvAttendu.AppendLine("176;194873,31;5126,69");
+        csvAttendu.AppendLine("177;196151,78;3848,22");
+        csvAttendu.AppendLine("178;197432,39;2567,61");
+        csvAttendu.AppendLine("179;198715,12;1284,88");
+        csvAttendu.AppendLine("180;200000;0");
+
+        var resultatCsv = csv.donnerCSV();
+        
+        Assert.Contains(csvAttendu.ToString(), resultatCsv);
+    }
+    
+    [Fact]
+    [Trait("Categorie", "CreationCSV")]
+    public void VerifierCreationCSVPremiereLigne()
+    {
+        var montant = 200000;
+        var tauxAnnuel = 2;
+        var dureeMois = 180;
+
+        var credit = new CreditImmobilier(montant, tauxAnnuel, dureeMois);
+
+        var csv = new CSV(credit);
+
+        var csvAttendu = new StringBuilder();
+        csvAttendu.AppendLine("Mensualité;Capital remboursé;Capital restant dû");
+
+        var resultatCsv = csv.donnerCSV();
+        
+        Assert.Contains(csvAttendu.ToString(), resultatCsv);
+    }
 }
