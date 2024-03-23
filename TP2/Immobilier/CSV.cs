@@ -14,6 +14,7 @@ public class CSV
     public string donnerCSV()
     {
         var csvBuilder = new StringBuilder();
+        csvBuilder.AppendLine("Le cout total du crédit est de ; " + credit.coutTotal() + "; euros");
         csvBuilder.AppendLine("Mensualité;Capital remboursé;Capital restant dû");
 
         for (var i = 1; i <= credit.obtenirDureeMois(); i++)

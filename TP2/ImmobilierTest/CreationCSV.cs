@@ -18,6 +18,7 @@ public class CreationCSV
         var csv = new CSV(credit);
 
         var csvAttendu = new StringBuilder();
+        csvAttendu.AppendLine("Le cout total du crédit est de ; " + credit.coutTotal() + "; euros");
         csvAttendu.AppendLine("Mensualité;Capital remboursé;Capital restant dû");
         csvAttendu.AppendLine("1;953,68;199046,32");
         csvAttendu.AppendLine("2;1908,96;198091,04");
@@ -32,7 +33,7 @@ public class CreationCSV
 
         var resultatCsv = csv.donnerCSV();
         
-        Assert.Contains(csvAttendu.ToString(), resultatCsv);
+        Assert.StartsWith(csvAttendu.ToString(), resultatCsv);
     }
     
     [Fact]
@@ -66,7 +67,7 @@ public class CreationCSV
     
     [Fact]
     [Trait("Categorie", "CreationCSV")]
-    public void VerifierCreationCSVPremiereLigne()
+    public void VerifierCreationCSVPremieresLigne()
     {
         var montant = 200000;
         var tauxAnnuel = 2;
@@ -77,10 +78,11 @@ public class CreationCSV
         var csv = new CSV(credit);
 
         var csvAttendu = new StringBuilder();
+        csvAttendu.AppendLine("Le cout total du crédit est de ; " + credit.coutTotal() + "; euros");
         csvAttendu.AppendLine("Mensualité;Capital remboursé;Capital restant dû");
 
         var resultatCsv = csv.donnerCSV();
         
-        Assert.Contains(csvAttendu.ToString(), resultatCsv);
+        Assert.StartsWith(csvAttendu.ToString(), resultatCsv);
     }
 }
