@@ -52,4 +52,18 @@ public class CreditImmobilier
 
         return capitalRestantDu;
     }
+    
+    public double obtenirMontant()
+    {
+        return montant;
+    }
+    public double obtenirTauxAnnuel()
+    {
+        return tauxAnnuel;
+    }
+    
+    public int obtenirDureeMois()
+    {
+        return dureeMois;
+    }
 }
