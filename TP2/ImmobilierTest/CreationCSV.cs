@@ -7,7 +7,7 @@ public class CreationCSV
 {
     [Fact]
     [Trait("Categorie", "CreationCSV")]
-    public void CreationCSVTest()
+    public void VerifierCreationCSV10PremieresLignes()
     {
         var montant = 200000;
         var tauxAnnuel = 2;
@@ -31,8 +31,6 @@ public class CreationCSV
         csvAttendu.AppendLine("10;9608,69;190391,31");
 
         var resultatCsv = csv.donnerCSV();
-        
-        csv.ecrireCSV("test.csv");
         
         Assert.Contains(csvAttendu.ToString(), resultatCsv);
     }
