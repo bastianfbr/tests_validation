@@ -4,7 +4,7 @@ namespace Immobilier;
 
 public class CSV
 {
-    private CreditImmobilier credit;
+    private readonly CreditImmobilier credit;
 
     public CSV(CreditImmobilier credit)
     {

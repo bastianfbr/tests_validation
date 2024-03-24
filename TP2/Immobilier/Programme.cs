@@ -1,6 +1,6 @@
 namespace Immobilier;
 
-public class Programme
+public static class Programme
 {
     public static void Main(string[] args)
     {

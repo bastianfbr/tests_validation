@@ -2,9 +2,9 @@
 
 public class CreditImmobilier
 {
-    private double montant;
-    private double tauxAnnuel;
-    private int dureeMois;
+    private readonly double montant;
+    private readonly double tauxAnnuel;
+    private readonly int dureeMois;
 
     public CreditImmobilier(double montant, double tauxAnnuel, int dureeMois)
     {
@@ -51,15 +51,6 @@ public class CreditImmobilier
         }
 
         return capitalRestantDu;
-    }
-    
-    public double obtenirMontant()
-    {
-        return montant;
-    }
-    public double obtenirTauxAnnuel()
-    {
-        return tauxAnnuel;
     }
     
     public int obtenirDureeMois()
