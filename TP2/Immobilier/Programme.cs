@@ -11,9 +11,23 @@ public static class Programme
                 return;
             }
         
-            var montant = double.Parse(args[0]);
-            var tauxAnnuel = double.Parse(args[1]);
-            var dureeMois = int.Parse(args[2]);
+            if (double.TryParse(args[0], out var montant) == false)
+            {
+                Console.WriteLine("Le montant spécifié n'est pas un nombre valide");
+                return;
+            }
+            
+            if (double.TryParse(args[1], out var tauxAnnuel) == false)
+            {
+                Console.WriteLine("Le taux annuel spécifié n'est pas un nombre valide");
+                return;
+            }
+            
+            if (int.TryParse(args[2], out var dureeMois) == false)
+            {
+                Console.WriteLine("La durée en mois spécifiée n'est pas un nombre valide");
+                return;
+            }
         
             var credit = new CreditImmobilier(montant, tauxAnnuel, dureeMois);
         
